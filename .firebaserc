@@ -1,0 +1,22 @@
+{
+  "projects": {
+    "default": "finance-f727d"
+  },
+  "targets": {
+    "betting-omoyetips": {
+      "hosting": {
+        "betting-omoyetips": [
+          "betting-omoyetips"
+        ]
+      }
+    },
+    "finance-f727d": {
+      "hosting": {
+        "betting-omoyetips": [
+          "betting-omoyetips"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

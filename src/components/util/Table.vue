@@ -1,0 +1,62 @@
+<template>
+    <div id="table-ad"></div>
+    <ul
+        class="flex flex-wrap sm:mx-0 text-sm font-medium text-center justify-center text-gray-500 dark:text-gray-400 border-b border-gray-900">
+        <li><button :class="{ 'bg-gray-900 text-gray-100 shadow-md': active_1 }"
+                @click="active_1 = true, active_2 = false, active_3 = false"
+                class="inline-block px-4 py-3 rounded-t-lg">Yesterday</button></li>
+        <li><button :class="{ 'bg-gray-900 text-gray-100 shadow-md': active_2 }"
+                @click="active_1 = false, active_2 = true, active_3 = false"
+                class="inline-block px-4 py-3 rounded-t-lg">Today</button></li>
+        <li><button :class="{ 'bg-gray-900 text-gray-100 shadow-md': active_3 }"
+                @click="active_1 = false, active_2 = false, active_3 = true"
+                class="inline-block px-4 py-3 rounded-t-lg">Tomorrow</button></li>
+    </ul>
+    <div :class="{ 'hidden': !active_1 }" class="my-4 border border-gray-300">
+        <yesterdayTips :games="yesterday" :yrefresh="yrefresh" :progress="progress" />
+    </div>
+    <div :class="{ 'hidden': !active_2 }" class="my-4 border border-gray-300">
+        <todayTips :games="today" :refresh="refresh" :progress="progress" />
+    </div>
+    <div :class="{ 'hidden': !active_3 }" class="my-4">
+        <div class="bg-orange-200">
+            <h3 class="text-lg p-10 text-gray-700">We're currently working it.</h3>
+        </div>
+    </div>
+</template>
+<script lang="ts">
+import { ref, onMounted } from 'vue';
+import todayTips from './today.vue'
+import yesterdayTips from './yesterday.vue'
+export default {
+    props: ['today', 'yesterday', 'progress', 'refresh', 'yrefresh'],
+    components: {
+        todayTips, yesterdayTips
+    },
+    setup() {
+        const active_1 = ref(false);
+        const active_2 = ref(true);
+        const active_3 = ref(false);
+        onMounted(() => {
+            const script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "https://lascivioushelpfulstool.com/017706e64fca1fe77a550e2d1647ca31/invoke.js"
+            script.append(`
+                atOptions = {
+                    'key': '017706e64fca1fe77a550e2d1647ca31',
+                    'format': 'iframe',
+                    'height': 90,
+                    'width': 728,
+                    'params': {}
+                }
+            `);
+            document.getElementById("table-ad")?.appendChild(script);
+        })
+        return {
+            active_1,
+            active_2,
+            active_3,
+        }
+    }
+}
+</script>
