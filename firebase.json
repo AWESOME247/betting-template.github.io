@@ -23,6 +23,7 @@
         ]
       }
     ],
+    "trailingSlash": true,
     "target": "betting-omoyetips"
   }
 }

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
         lang: "en"
       },
     },
+    
     // html: {
     //   minify: {
     //     ignoreCustomComments: [/^Bidvertiser2085950$/]
@@ -25,7 +26,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true
-    }
+    },
   },
   router: {
     options: {
