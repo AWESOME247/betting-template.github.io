@@ -130,7 +130,7 @@ export default {
                 },
             ],
             link: [{
-                rel: "canonical", href: 'https://finance.omoyetips.com' + useRoute().path
+                rel: "canonical", href: 'https://finance.omoyetips.com' + useRoute().path.replace(/\/$/, "")
             }]
         })
     }

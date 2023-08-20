@@ -99,7 +99,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com" + path
+            "@id": "https://betting.omoyetips.com" + path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -107,11 +107,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com" + path,
+            url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         }],
         articleSection: ['Odd 4 Sure Wins', 'Today football 4 odds prediction', 'Yesterday football 4 odds prediction', 'Tomorrow football 4 odds prediction', 'Omoyetips Odd 4 Sure Wins', "Omoyetips: The Best Website to Get Odd 4 Sure Wins", 'What are 3 Odds and Why are They Hard to Achieve?', 'Conclusion'],
         articleBody: 'In this blog post, we will explore what 2-5 multi goals in football betting are all about and why Omoyetips stands out as the best website to obtain reliable predictions in this category. With a commitment to providing free, accurate, and sure 2-5 multi goals predictions, Omoyetips has become a trusted resource for avid football bettors.',
-        url: "https://betting.omoyetips.com" + path,
+        url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
@@ -146,7 +146,7 @@ useHead({
     //     }
     // ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com' + path
+        rel: "canonical", href: 'https://betting.omoyetips.com' + path.replace(/\/$/, "")
     }]
 })
 </script>

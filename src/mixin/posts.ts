@@ -227,7 +227,7 @@ export default [
     title: "Sure 4 Odds",
     desc: `Discover the power of Omoyetips' sure 4 odds predictions. From "Home Draw Away" to over/under goals, explore diverse markets for strategic football betting.`,
     image: "/soccerball.webp",
-    link: "/blog/3-odds-banker",
+    link: "/blog/sure-4-odds",
     class: 'h-full w-full rounded-md object-cover'
   },
 ];

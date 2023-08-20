@@ -60,13 +60,13 @@ onMounted(() => {
     {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "https://pl20299787.highcpmrevenuegate.com/e0/07/ec/e007ec1318fee1fe31672d7e5afbd00a.js"
+        script.src = "https://lascivioushelpfulstool.com/58/f4/f7/58f4f777eb5d2b59e7112034f9853a90.js"
         document.body.appendChild(script);
     }
     {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "https://pl20331174.highcpmrevenuegate.com/58/f4/f7/58f4f777eb5d2b59e7112034f9853a90.js"
+        script.src = "https://lascivioushelpfulstool.com/58/f4/f7/58f4f777eb5d2b59e7112034f9853a90.js"
         document.body.appendChild(script);
     }
     {
@@ -74,7 +74,19 @@ onMounted(() => {
         script.type = "text/javascript";
         script.setAttribute("data-cfasync", "false")
         script.setAttribute("async", "async")
-        script.src = "https://pl20331246.highcpmrevenuegate.com/58604ab3a34b2dc7d803f0dbda8d1d2d/invoke.js"
+        script.src = "https://lascivioushelpfulstool.com/58604ab3a34b2dc7d803f0dbda8d1d2d/invoke.js"
+        document.body.appendChild(script);
+    }
+    {
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://lascivioushelpfulstool.com/66/d3/59/66d3596b0bf956bc4613af18d047dfeb.js"
+        document.body.appendChild(script);
+    }
+    {
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://lascivioushelpfulstool.com/05/be/ee/05beee8721267817a62e15a099fdc158.js"
         document.body.appendChild(script);
     }
 })

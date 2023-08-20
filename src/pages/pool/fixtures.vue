@@ -7,6 +7,7 @@
                 <option :selected="i === 0" :value="date">{{ date }}</option>
             </template>
         </select>
+        <p v-show="loading" class="text-xl">Please wait...</p>
         <table class="w-full border-collapse overflow-x-auto">
             <thead class="whitespace-nowrap">
                 <tr class="bg-gray-900 text-gray-100">
@@ -145,7 +146,7 @@ import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import LazyLoad from '../../components/LazyLoad.vue';
 const progress = ref();
-
+const loading = ref(false)
 interface Game {
     num: string
     home: string
@@ -178,6 +179,7 @@ console.log(posts?.value);
 
 const updateFixtures = async (e: any) => {
     const date: string = e.target.value;
+    loading.value = true;
     const monthNameToNumber: any = {
         "Jan": "01",
         "Feb": "02",
@@ -198,7 +200,8 @@ const updateFixtures = async (e: any) => {
 
     const { data: posts, pending }: any = await useFetch(`${api}pool/games/${date.split('-')[2]}-${mon}-${date.split('-')[0]}`)
     fixtures.tips = posts?.value?.predictions?.team;
-    week.date = posts?.value?.predictions?.weekDay
+    week.date = posts?.value?.predictions?.weekDay;
+    if(posts) loading.value = false;
 }
 
 watchEffect(() => {
@@ -216,7 +219,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com/" + path
+            "@id": "https://betting.omoyetips.com" + path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -224,11 +227,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com/" + path,
+            url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         }],
         articleSection: ['Omoyetips Pool Fixtures', 'Omoyetips: Unveiling the Power of Precise Predictions', 'A Treasure Trove of Betting Tips', 'Reliable Pool Fixtures for This Week and Beyond', 'Weekend Pool Draws', "Putting Accuracy First: Why Omoyetips Stands Out", 'Conclusion'],
         articleBody: `If you're seeking a one-stop destination for pool fixtures, football results, and a plethora of betting tips, Omoyetips emerges as a clear winner. Backed by a team of knowledgeable analysts and powered by data, this platform offers a comprehensive range of predictions to suit every bettor's style. With Omoyetips in your corner, you can dive into the exciting world of sports betting with confidence, armed with accurate information that could turn your bets into wins.`,
-        url: "https://betting.omoyetips.com/" + path,
+        url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
@@ -263,7 +266,7 @@ useHead({
     //     }
     // ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com/' + path
+        rel: "canonical", href: 'https://betting.omoyetips.com' + path.replace(/\/$/, "")
     }]
 })
 </script>

@@ -31,6 +31,7 @@ export default defineNuxtConfig({
   router: {
     options: {
       linkExactActiveClass: "green",
+      strict: false
     },
   },
   css: ["~/style.css"],
@@ -172,6 +173,13 @@ export default defineNuxtConfig({
         changefreq: "monthly",
         priority: 0.8,
         lastmod: "2023-08-17T11:01:35+01:44",
+      },
+    },
+    "/pool/fixtures": {
+      sitemap: {
+        changefreq: "weekly",
+        priority: 0.9,
+        lastmod: "2023-08-19T11:03:35+01:44",
       },
     },
   },

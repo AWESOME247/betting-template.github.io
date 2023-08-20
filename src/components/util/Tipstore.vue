@@ -22,6 +22,7 @@
         <a href="/free-vip-sure-accurate/handicap" class="col-span-6 sm:col-span-4 bg-gray-900 hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg text-gray-100 rounded-md text-xl font-bold font-mukha p-3 h-20 grid place-content-center text-center">Handicap</a>
         <a href="/free-vip-sure-accurate/bet_of_the_day" class="col-span-6 sm:col-span-4 bg-gray-900 hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg text-gray-100 rounded-md text-xl font-bold font-mukha p-3 h-20 grid place-content-center text-center">Bet Of The Day</a>
         <a href="/free-vip-sure-accurate/king-of-correct-score" class="col-span-6 sm:col-span-4 bg-gray-900 hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg text-gray-100 rounded-md text-xl font-bold font-mukha p-3 h-20 grid place-content-center text-center">Correct Score</a>
+        <a href="/pool/fixtures" class="col-span-6 sm:col-span-4 bg-gray-900 hover:bg-gray-200 hover:text-gray-900 hover:shadow-lg text-gray-100 rounded-md text-xl font-bold font-mukha p-3 h-20 grid place-content-center text-center">Pool Fixtures</a>
     </div>
     <div id="container-58604ab3a34b2dc7d803f0dbda8d1d2d"></div>
     <Blog />

@@ -75,7 +75,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com" + path
+            "@id": "https://betting.omoyetips.com" + path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -83,11 +83,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com" + path,
+            url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         }],
         articleSection: ['Omoyetips: Safe 2 Odds Daily', 'Omoyetips: A Glimpse of Excellence', 'The Power of Safe 2 Odds Daily', 'Omoyetips Safe 2 Odds Daily: A Free Offering', 'Reliability Redefined', "Earning with Omoyetips Safe 2 Odds Daily", 'Unparalleled Value', 'Conclusion'],
         articleBody: `In the ever-evolving world of sports betting, finding reliable sources for accurate predictions can be a daunting task. With countless websites vying for your attention, it's crucial to sift through the noise and identify the real gems.`,
-        url: "https://betting.omoyetips.com" + path,
+        url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
@@ -115,7 +115,7 @@ useHead({
         },
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com' + path
+        rel: "canonical", href: 'https://betting.omoyetips.com' + path.replace(/\/$/, "")
     }]
 })
 </script>

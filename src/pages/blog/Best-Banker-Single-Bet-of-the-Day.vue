@@ -60,7 +60,7 @@ useHead({
         }
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

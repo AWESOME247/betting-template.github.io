@@ -9,7 +9,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/"
       }
     ],
     "headers": [
@@ -23,7 +23,7 @@
         ]
       }
     ],
-    "trailingSlash": true,
+    "trailingSlash": false,
     "target": "betting-omoyetips"
   }
 }

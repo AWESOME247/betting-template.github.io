@@ -70,7 +70,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com" + path
+            "@id": "https://betting.omoyetips.com" + path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -78,11 +78,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com" + path,
+            url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         }],
         articleSection: ['3 Odds Bankers', 'Brief About Omoyetips', 'Omoyetips 3 Odds Banker: A Cut Above the Rest', 'What Makes Omoyetips 3 Odds Banker Reliable?', 'How to Earn with Omoyetips 3 Odds Banker', "Higher 3 Odds Bankers Daily", 'Conclusion'],
         articleBody: `In a realm where promises can often be empty, Omoyetips stands as a beacon of reliability and accuracy. If you're looking for a platform that offers high-quality 3 odds banker predictions that you can trust, look no further. With a team of experienced analysts, a commitment to data-driven accuracy, and a passion for helping bettors succeed, Omoyetips is undoubtedly the best site to elevate your betting game. Explore their offerings, combine their insights with your research, and embark on a journey toward more informed and successful betting decisions.`,
-        url: "https://betting.omoyetips.com" + path,
+        url: "https://betting.omoyetips.com" + path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
@@ -110,7 +110,7 @@ useHead({
         },
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com' + path
+        rel: "canonical", href: 'https://betting.omoyetips.com' + path.replace(/\/$/, "")
     }]
 })
 </script>
