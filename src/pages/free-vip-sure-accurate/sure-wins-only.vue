@@ -69,7 +69,7 @@ if (!pending) progress.value = 'Something went wrong \n Please reload the page!'
 const { data: yposts, refresh: yrefresh }: any = await useAsyncData('yesterdayGamesStraigth_only', () => $fetch(`${api}yesterday/games/straigth_only`))
 watchEffect(() => {
     todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
+    yesterdayGames.tips = filter(yposts?.value?.predictions);
 })
 
 const siteData = {
@@ -98,7 +98,7 @@ useHead({
     //     }
     // ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com/free-vip-sure-accurate/sure-wins-only'
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

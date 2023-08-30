@@ -130,7 +130,7 @@ watchEffect(() => {
 })
 
 useHead({
-    title: 'Sure VIP Under 3.5 Goals Predictions - Betting Omoyetips',
+    title: 'Sure VIP Under 3.5 Goals Predictions',
     meta: [
         {
             name: 'description',

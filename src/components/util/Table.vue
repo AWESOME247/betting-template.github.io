@@ -13,10 +13,20 @@
                 class="inline-block px-4 py-3 rounded-t-lg">Tomorrow</button></li>
     </ul>
     <div :class="{ 'hidden': !active_1 }" class="my-4 border border-gray-300">
-        <yesterdayTips :games="yesterday" :yrefresh="yrefresh" :progress="progress" />
+        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'}">
+            <yesterdayTips :games="yesterday" :yrefresh="yrefresh" :progress="progress" />
+        </div>
+        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'">
+            <yesterdayOddTips :games="yesterday" :refresh="refresh" :progress="progress" />
+        </div>
     </div>
     <div :class="{ 'hidden': !active_2 }" class="my-4 border border-gray-300">
-        <todayTips :games="today" :refresh="refresh" :progress="progress" />
+        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'}">
+            <todayTips :games="today" :refresh="refresh" :progress="progress" />
+        </div>
+        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'">
+            <todayOddTips :games="today" :refresh="refresh" :progress="progress" />
+        </div>
     </div>
     <div :class="{ 'hidden': !active_3 }" class="my-4">
         <div class="bg-orange-200">
@@ -27,11 +37,13 @@
 <script lang="ts">
 import { ref, onMounted } from 'vue';
 import todayTips from './today.vue'
+import yesterdayOddTips from './OddTableYesterday.vue'
+import todayOddTips from './OddTable.vue'
 import yesterdayTips from './yesterday.vue'
 export default {
     props: ['today', 'yesterday', 'progress', 'refresh', 'yrefresh'],
     components: {
-        todayTips, yesterdayTips
+        todayTips, yesterdayTips, todayOddTips, yesterdayOddTips
     },
     setup() {
         const active_1 = ref(false);

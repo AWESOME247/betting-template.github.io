@@ -13,7 +13,7 @@
                 <tr class="bg-gray-900 text-gray-100">
                     <th class="text-center py-2" scope="col">#</th>
                     <th class="text-center py-2" scope="col" colspan="3">Fixtures</th>
-                    <th class="text-center py-2" scope="col">Result</th>
+                    <th class="text-center py-2 hidden sm:block md:block" scope="col">Result</th>
                     <th class="text-center py-2" scope="col">Status</th>
                 </tr>
             </thead>
@@ -22,19 +22,19 @@
                     <tr class="border-b border-gray-200" :class="{ 'border-gray-700 border-b-4': !team?.num }">
                         <td class="text-center py-4 bg-gray-700 text-gray-50" :class="{ 'hidden': !team?.num }">{{ team?.num
                         }}</td>
-                        <td class="py-4 pl-1 sm:text-start md:text-start text-end font-bold"
+                        <td class="py-4 pl-0 sm:pl-1 md:pl-1 sm:text-start md:text-start text-end font-bold"
                             :class="{ 'hidden': !team?.num }">
                             <p>{{ team?.home }}</p>
                         </td>
-                        <td class="py-4 px-1 text-center text-red-600"
-                            :class="{ 'hidden': !team?.num, 'text-green-700 font-bold': parseInt(team?.score?.split(')')[0]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) === parseInt(team?.score?.split(')')[1]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) }">
+                        <td class="py-4 sm:px-1 md:px-1 px-0 text-center text-red-600"
+                            :class="{ 'hidden': !team?.num, 'text-green-500 font-bold': parseInt(team?.score?.split(')')[0]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) === parseInt(team?.score?.split(')')[1]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) }">
                             {{ team.score ? team.score : "VS" }}
                         </td>
                         <td class="py-4 sm:text-end md:text-end text-start font-bold" :class="{ 'hidden': !team?.num }">
                             {{ team?.away }}
                         </td>
-                        <td class="py-4 text-center"
-                            :class="{ 'hidden': !team?.num, 'text-green-700 font-bold capitalize': team?.result !== 'Away' && team?.result !== 'Home' }">
+                        <td class="py-4 text-center hidden sm:block md:block"
+                            :class="{ 'hidden sm:hidden md:hidden': !team?.num, 'text-green-700 font-bold capitalize': team?.result !== 'Away' && team?.result !== 'Home' }">
                             {{ team?.result }}
                         </td>
                         <td class="py-4 text-center" :class="{ 'hidden': !team?.num }">
@@ -169,13 +169,13 @@ const dates: any = reactive({
 
 const path = useRoute().path;
 
-const { data: posts, pending }: any = await useFetch(`${api}pool/games`)
+const { data: posts, pending, refresh }: any = await useFetch(`${api}pool/games`)
 const { data: date }: any = await useFetch(`${api}pool/weekly/features`)
 if (!pending) progress.value = 'Something went wrong \n Please reload the page!';
 
 fixtures.tips = posts?.value?.predictions?.team;
 week.date = posts?.value?.predictions?.weekDay;
-console.log(posts?.value);
+refresh()
 
 const updateFixtures = async (e: any) => {
     const date: string = e.target.value;

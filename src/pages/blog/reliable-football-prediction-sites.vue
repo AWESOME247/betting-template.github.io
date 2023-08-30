@@ -72,7 +72,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com/blog/reliable-football-prediction-sites"
+            "@id": "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -80,11 +80,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com/blog/reliable-football-prediction-sites",
+            url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         }],
         articleSection: ['Reliable Football Prediction Sites', 'The Most Reliable Soccer Prediction Site', 'Wide Range of Betting Tips', 'Data-Driven Predictions', 'Free Access to High-Quality Tips', 'Conclusion'],
         articleBody: 'In the dynamic and unpredictable world of sports, football enthusiasts and punters alike seek trustworthy sources that can provide valuable insights to make informed betting decisions.',
-        url: "https://betting.omoyetips.com/blog/reliable-football-prediction-sites",
+        url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
@@ -106,7 +106,7 @@ useHead({
         }
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

@@ -102,7 +102,7 @@ useHead({
         }
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com/blog/King-Of-GG-Prediction'
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

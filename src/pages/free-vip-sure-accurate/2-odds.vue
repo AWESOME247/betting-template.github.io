@@ -85,9 +85,6 @@ const { data: posts, pending, refresh }: any = await useAsyncData('todayGames2od
 if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
 const { data: yposts, refresh: yrefresh}: any = await useAsyncData('yesterdayGames2odds', () => $fetch(`${ api }yesterday/games/2odds`))
 
-console.log(posts);
-
-
 watchEffect(() => {
     todayGames.tips = filter(posts?.value?.predictions);
     yesterdayGames.tips = filter(yposts?.value?.predictions)

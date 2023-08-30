@@ -101,7 +101,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com/blog/soccer-predictions-today-sure-wins"
+            "@id": "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -109,11 +109,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com/blog/soccer-predictions-today-sure-wins",
+            url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         }],
         articleSection: ['Soccer Predictions Today Sure Wins', 'Brief About Omoyetips', 'The Data-Driven Approach', 'Omoyetips has a High Winning Rate in Soccer Predictions', "Why Omoyetips' Predictions Are Reliable", 'Omoyetips Today Soccer Predictions for Sure Wins - A Free Service', 'A Plethora of Betting Tips and Markets', 'Conclusion'],
         articleBody: "In the ever-growing world of sports betting, one of the most challenging tasks for enthusiasts is to accurately predict the outcome of soccer matches. While some rely on intuition or luck, others seek expert advice and data-driven analysis to improve their chances of winning. Omoyetips, a free soccer prediction website, stands out as a beacon of reliability and accuracy in this domain.",
-        url: "https://betting.omoyetips.com/blog/soccer-predictions-today-sure-wins",
+        url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"

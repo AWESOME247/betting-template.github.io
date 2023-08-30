@@ -170,7 +170,7 @@ useHead({
     //     }
     // ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com/free-vip-sure-accurate/king-of-correct-score'
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

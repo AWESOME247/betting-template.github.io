@@ -20,10 +20,12 @@ export function filterObjectsWithUniqueMatches(arr: any) {
   const filteredTeams: any = [];
   arr?.forEach((obj: any) => {
       const home = obj.home && obj.home.trim();
-      if (home && !uniqueHomes.has(home)) {
+      const odds = obj.tips.split('(')[1]?.replace(')', '');
+      const odd = parseFloat(odds);
+      if (home && !uniqueHomes.has(home) && odd >= 1.40 && odd < 1.75) {
           filteredTeams.push(obj);
           uniqueHomes.add(home);
       }
   });
-  return filteredTeams;
+  return filteredTeams
 }

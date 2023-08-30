@@ -111,7 +111,7 @@ watchEffect(() => {
 })
 
 useHead({
-    title: 'Sure VIP Win Either Half Predictions - Betting Omoyetips',
+    title: 'Sure VIP Win Either Half Predictions',
     meta: [
         {
             name: 'description',

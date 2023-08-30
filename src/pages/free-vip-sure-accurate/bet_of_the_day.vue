@@ -80,7 +80,7 @@ const todayGames = reactive({
     tips: Array<todayInterface>
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();

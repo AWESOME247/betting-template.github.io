@@ -124,15 +124,15 @@ useHead({
     meta: [
         {
             name: 'description',
-            content: 'Omoyetips, the king of GG prediction. Maximize your chances of winning in football betting and discover expert insights for successful GG/BTTS predictions.'
+            content: 'Get sure everyday winning tips with Omoyetips your number one source of sure, reliable, and accurate betting tips free of charge no credit card required'
         },
         {
             name: 'keywords',
-            content: `Your go-to source for everyday winning tips in sports betting. Access our betting tips for free, Revolutionize your betting experience with Omoyetips today.`
+            content: `everyday winning prediction site, everyday winning soccer tips, everyday winning tips today, everyday win prediction`
         }
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com/blog/everyday-winning-tips'
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

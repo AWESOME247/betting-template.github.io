@@ -55,20 +55,20 @@
     </footer>
 </template>
 <script lang="ts" setup>
-import { onMounted } from "vue"
-onMounted(() => {
+import { onBeforeMount } from "vue"
+onBeforeMount(() => {
     {
         const script = document.createElement("script");
         script.type = "text/javascript";
         script.src = "https://lascivioushelpfulstool.com/58/f4/f7/58f4f777eb5d2b59e7112034f9853a90.js"
         document.body.appendChild(script);
     }
-    {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "//lascivioushelpfulstool.com/05/be/ee/05beee8721267817a62e15a099fdc158.js"
-        document.body.appendChild(script);
-    }
+    // {
+    //     const script = document.createElement("script");
+    //     script.type = "text/javascript";
+    //     script.src = "//lascivioushelpfulstool.com/05/be/ee/05beee8721267817a62e15a099fdc158.js"
+    //     document.body.appendChild(script);
+    // }
     {
         const script = document.createElement("script");
         script.type = "text/javascript";
@@ -83,13 +83,13 @@ onMounted(() => {
         script.src = "https://lascivioushelpfulstool.com/66/d3/59/66d3596b0bf956bc4613af18d047dfeb.js"
         document.body.appendChild(script);
     }
+    // {
+    //     const script = document.createElement("script");
+    //     script.type = "text/javascript";
+    //     script.src = "https://lascivioushelpfulstool.com/05/be/ee/05beee8721267817a62e15a099fdc158.js"
+    //     document.body.appendChild(script);
+    // }
     {
-        const script = document.createElement("script");
-        script.type = "text/javascript";
-        script.src = "https://lascivioushelpfulstool.com/05/be/ee/05beee8721267817a62e15a099fdc158.js"
-        document.body.appendChild(script);
-    }
-	    {
         const script = document.createElement("script");
         script.type = "text/javascript";
         script.src = "https://lascivioushelpfulstool.com/05/be/ee/05beee8721267817a62e15a099fdc158.js"

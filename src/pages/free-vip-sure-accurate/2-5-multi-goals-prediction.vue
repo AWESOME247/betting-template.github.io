@@ -186,7 +186,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com/free-vip-sure-accurate/2-5-multi-goals-prediction"
+            "@id": "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -194,11 +194,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com/free-vip-sure-accurate/2-5-multi-goals-prediction",
+            url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         }],
         articleSection: ['Today 2-5 Multi Goals Prediction', 'Yesterday 2-5 Multi Goals Prediction', 'Tomorrow 2-5 Multi Goals Prediction', 'Omoyetips: 2-5 Multi Goals Prediction', 'What are 2-5 Multi Goals in Football Betting?', "Let's explore three possible scenarios", 'Calculating Potential Payout', 'The Best Website for 2-5 Multi Goals Predictions', 'Accuracy and Data-Driven Approach', 'Suitable for All Levels of Bettors', 'Conclusion'],
         articleBody: 'In this blog post, we will explore what 2-5 multi goals in football betting are all about and why Omoyetips stands out as the best website to obtain reliable predictions in this category. With a commitment to providing free, accurate, and sure 2-5 multi goals predictions, Omoyetips has become a trusted resource for avid football bettors.',
-        url: "https://betting.omoyetips.com/free-vip-sure-accurate/2-5-multi-goals-prediction",
+        url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
@@ -233,7 +233,7 @@ useHead({
     //     }
     // ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com/free-vip-sure-accurate/2-5-multi-goals-prediction'
+        rel: "canonical", href: 'https://betting.omoyetips.com' + useRoute().path.replace(/\/$/, "")
     }]
 })
 </script>

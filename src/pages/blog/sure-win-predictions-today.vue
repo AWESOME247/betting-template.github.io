@@ -95,7 +95,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com/blog/sure-win-predictions-today"
+            "@id": "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -103,11 +103,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com/blog/sure-win-predictions-today",
+            url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         }],
         articleSection: ['Soccer Predictions Today Sure Wins', 'Omoyetips Sure Win Prediction Today: Your Winning Ticket!', 'Omoyetips Has a High Sure Win Prediction Today - Unmatched Accuracy!', 'Omoyetips Sure Win Prediction Today is Free - No Hidden Costs!', "Why Omoyetips' Predictions Are Reliable", 'Omoyetips Today Soccer Predictions for Sure Wins - A Free Service', 'What Makes Omoyetips Sure Win Prediction Today Reliable?', 'How to Earn with Omoyetips Sure Win Prediction Today - Maximizing Your Profits', 'Omoyetips Offers High Sure Win Prediction Today Than Other Websites - A Cut Above the Rest', 'Conclusion'],
         articleBody: "Welcome to Omoyetips - your ultimate destination for free, accurate, and reliable soccer betting tips! If you're an avid sports bettor looking for sure win predictions today, you've come to the right place. Omoyetips is a soccer betting tips website that takes pride in offering a comprehensive range of betting tips to assist users in making well-informed decisions while betting on their favorite teams.",
-        url: "https://betting.omoyetips.com/blog/sure-win-predictions-today",
+        url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"

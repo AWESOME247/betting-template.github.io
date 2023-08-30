@@ -72,7 +72,7 @@ useSchemaOrg([
         "@type": "Article",
         mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": "https://betting.omoyetips.com/blog/winning-prediction-site"
+            "@id": "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, "")
         },
         image: '/logo.png',
         datePublished: new Date(2022, 6, 12),
@@ -80,11 +80,11 @@ useSchemaOrg([
         author: [{
             "@type": "Website",
             name: "Omoyetips",
-            url: "https://betting.omoyetips.com/blog/winning-prediction-site",
+            url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         }],
         articleSection: ['Omoyetips: A Winning Prediction Site', 'Omoyetips: A High Win Rate in Football Prediction', 'What Makes Omoyetips a Winning Prediction Site?', 'Omoyetips: A Free, Reliable, Winning Prediction Site', 'Daily Most Win Tips and High Win Rate', 'User-Friendly Interface and Features', 'Community Engagement and Feedback', 'Educational Resources', 'Conclusion'],
         articleBody: "In the vast and ever-evolving world of online sports betting, finding a reliable prediction site can often feel like searching for a needle in a haystack. With countless websites claiming to have the secret to success, it's easy to get lost in the sea of options.",
-        url: "https://betting.omoyetips.com/blog/winning-prediction-site",
+        url: "https://betting.omoyetips.com" + useRoute().path.replace(/\/$/, ""),
         publisher: {
             "@type": "Website",
             name: "Omoyetips"
