@@ -173,9 +173,6 @@ watchEffect(() => {
     yesterdayGames.tips = filter(yposts?.value?.predictions)
 })
 
-var infolinks_pid = 3402342; 
-var infolinks_wsid = 0;
-
 const siteData = {
     title: 'Home - Omyestips free VIP football betting tips',
     discription: 'Get practical tips and insights on football betting, omoyetips offers tips like over 1.5 goals, over 2.5 goals, over 3.5 goals etc',
@@ -226,12 +223,5 @@ useHead({
     link: [{
         rel: "canonical", href: 'https://betting.omoyetips.com'
     }],
-    script: [
-        {
-            defer: true,
-            type: "text/javascript",
-            src: "https://resources.infolinks.com/js/infolinks_main.js"
-        }
-    ]
 })
 </script>

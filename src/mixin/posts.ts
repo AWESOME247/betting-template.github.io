@@ -230,4 +230,32 @@ export default [
     link: "/blog/sure-4-odds",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "Omoyetips Football Prediction",
+    desc: `Elevate your bets with Omoyetips: Free football predictions, expert strategies, winning insights, daily winning tips. Unleash your betting potential today.`,
+    image: "/soccerball.webp",
+    link: "/blog/free-football-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Omoyetips Soccer Prediction",
+    desc: `Elevate your betting with Omoyetips soccer prediction website. Experience tailored strategies for profitable outcomes. Your journey to success starts here.`,
+    image: "/soccerball.webp",
+    link: "/blog/free-soccer-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Free 1.5 Odds Daily",
+    desc: `Win with Omoyetips: Free 1.5 odds daily predictions for informed 'over 1.5 goals' betting. Elevate your strategy, enhance your wins now with Omoyetips.`,
+    image: "/soccerball.webp",
+    link: "/blog/free-1-5-odds-daily",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Good Prediction Site",
+    desc: `Elevate your betting with a good prediction site, expert insights, and winning strategies. Embrace informed decisions and turn predictions into profits.`,
+    image: "/soccerball.webp",
+    link: "/blog/good-prediction-site",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];

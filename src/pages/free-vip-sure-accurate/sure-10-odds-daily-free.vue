@@ -60,7 +60,7 @@ const filter = (teams: any) => {
             uniqueHomes.add(home);
         }
     });
-    return filteredTeams.slice(0, 8).reverse();
+    return filteredTeams.slice(0, 7).reverse();
 };
 
 const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/straigth_only`)

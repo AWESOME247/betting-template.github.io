@@ -22,7 +22,17 @@ export default defineNuxtConfig({
     "nuxt-simple-sitemap",
     "@vite-pwa/nuxt",
     "nuxt-schema-org",
+    "@nuxtjs/google-fonts",
+    "nuxt-gtag",
   ],
+  googleFonts: {
+    families: {
+      Lobster: true,
+    },
+    display: "swap",
+    preload: true,
+    useStylesheet: true,
+  },
   nitro: {
     prerender: {
       crawlLinks: true,
@@ -187,6 +197,20 @@ export default defineNuxtConfig({
         changefreq: "monthly",
         priority: 0.8,
         lastmod: "2023-08-30T09:01:35+01:00",
+      },
+    },
+    "/blog/free-1-5-odds-daily": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-08-31T09:01:35+01:00",
+      },
+    },
+    "/blog/good-prediction-site": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-08-31T02:01:35+01:00",
       },
     },
     "/pool/fixtures": {

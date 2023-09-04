@@ -13,18 +13,18 @@
                 class="inline-block px-4 py-3 rounded-t-lg">Tomorrow</button></li>
     </ul>
     <div :class="{ 'hidden': !active_1 }" class="my-4 border border-gray-300">
-        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'}">
+        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'}">
             <yesterdayTips :games="yesterday" :yrefresh="yrefresh" :progress="progress" />
         </div>
-        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'">
+        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'">
             <yesterdayOddTips :games="yesterday" :refresh="refresh" :progress="progress" />
         </div>
     </div>
     <div :class="{ 'hidden': !active_2 }" class="my-4 border border-gray-300">
-        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'}">
+        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'}">
             <todayTips :games="today" :refresh="refresh" :progress="progress" />
         </div>
-        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-daily-tips'">
+        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'">
             <todayOddTips :games="today" :refresh="refresh" :progress="progress" />
         </div>
     </div>

@@ -10,7 +10,7 @@
         <p v-show="loading" class="text-xl">Please wait...</p>
         <table class="w-full border-collapse overflow-x-auto">
             <thead class="whitespace-nowrap">
-                <tr class="bg-gray-900 text-gray-100">
+                <tr :style="{ 'background-color': week.color?.trim()?.split(' ')[0] }" class="text-gray-100">
                     <th class="text-center py-2" scope="col">#</th>
                     <th class="text-center py-2" scope="col" colspan="3">Fixtures</th>
                     <th class="text-center py-2 hidden sm:block md:block" scope="col">Result</th>
@@ -19,8 +19,8 @@
             </thead>
             <tbody v-show="dates.tips" class="whitespace-nowrap">
                 <template v-for="team in fixtures.tips" :key="team">
-                    <tr class="border-b border-gray-200" :class="{ 'border-gray-700 border-b-4': !team?.num }">
-                        <td class="text-center py-4 bg-gray-700 text-gray-50" :class="{ 'hidden': !team?.num }">{{ team?.num
+                    <tr class="border-b border-gray-200" :style="{ 'border-color': week.color?.trim()?.split(' ')[0] }"  :class="{ 'border-b-4': !team?.num }">
+                        <td class="text-center py-4 text-gray-950 font-bold" :class="{ 'hidden': !team?.num }">{{ team?.num
                         }}</td>
                         <td class="py-4 pl-0 sm:pl-1 md:pl-1 sm:text-start md:text-start text-end font-bold"
                             :class="{ 'hidden': !team?.num }">
@@ -160,7 +160,8 @@ const fixtures: any = reactive({
 });
 
 const week: any = reactive({
-    date: ''
+    date: '',
+    color: ''
 });
 
 const dates: any = reactive({
@@ -175,6 +176,8 @@ if (!pending) progress.value = 'Something went wrong \n Please reload the page!'
 
 fixtures.tips = posts?.value?.predictions?.team;
 week.date = posts?.value?.predictions?.weekDay;
+week.color = posts?.value?.predictions?.bgColor;
+
 refresh()
 
 const updateFixtures = async (e: any) => {
@@ -201,15 +204,18 @@ const updateFixtures = async (e: any) => {
     const { data: posts, pending }: any = await useFetch(`${api}pool/games/${date.split('-')[2]}-${mon}-${date.split('-')[0]}`)
     fixtures.tips = posts?.value?.predictions?.team;
     week.date = posts?.value?.predictions?.weekDay;
-    if(posts) loading.value = false;
+    week.color = posts?.value?.predictions?.bgColor;
+    if (posts) loading.value = false;
 }
 
 watchEffect(() => {
     fixtures.tips;
     week.date;
-    console.log(pending);
+    week.color;
     dates.tips = date?.value?.predictions
 })
+
+console.log(week.color?.trim()?.split(' ')[0]);
 
 useSchemaOrg([
     defineWebSite({
