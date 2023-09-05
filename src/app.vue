@@ -1,12 +1,7 @@
 <template>
   <VitePwaManifest />
-  <NuxtLayout>
-    <Nav />
-    <NuxtPage />
-    <Footer />
-  </NuxtLayout>
+  <templateVue />
 </template>
-<script setup>
-import Nav from "./components/Navigation.vue"
-import Footer from "./components/Footer.vue"
+<script lang="ts" setup>
+  import templateVue from './template.vue';
 </script>
