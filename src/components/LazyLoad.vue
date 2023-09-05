@@ -22,7 +22,7 @@ export default defineComponent({
         },
         loadingImage: {
             type: String,
-            default: "/Ripple-1s-200px.svg",
+            default: "/soccerball.webp",
         },
         errorImage: {
             type: String,

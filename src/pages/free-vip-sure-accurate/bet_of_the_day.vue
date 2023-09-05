@@ -77,7 +77,7 @@ import { useRoute } from 'vue-router';
 import { todayInterface, yesterdayInterface } from '../../mixin/interface'
 const progress = ref();
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
     tips: []
@@ -95,7 +95,7 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh }: any = await useAsyncData('bet_of_the_day', () => $fetch(`${api}today/games/bet_of_the_day`))
+const { data: posts, pending, refresh }: any = useFetch(`${api}today/games/bet_of_the_day`)
 
 if (!pending) progress.value = 'Network Error \n Please Reload The Page!';
 watchEffect(() => {

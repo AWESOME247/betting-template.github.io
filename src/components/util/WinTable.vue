@@ -56,7 +56,7 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="!games[1]">
+        <div v-show="games.length < 1">
             <div class="h-96 w-full grid place-content-center">
                 <div :class="{ 'hidden': progress }"
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
@@ -85,14 +85,14 @@ const progress = ref();
 
 const path = useRoute().path;
 
-const games: any = ref();
+const games: any = ref([]);
 const length = ref(0);
 
 const ov1 = async () => {
     try {
-        const { data: posts, pending }: any = await useAsyncData('yesterGamesOver1', () => $fetch(`${api}yesterday/games/over1.5`))
+        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/over1.5`)
         if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        const games = await posts.value.predictions
+        const games = await posts.value?.predictions
         return games?.filter((match: any) => {
             const scr = match.score.split(':');
             const home = scr[0]
@@ -107,9 +107,9 @@ const ov1 = async () => {
 }
 const ov2 = async () => {
     try {
-        const { data: posts, pending }: any = await useAsyncData('yesterGamesOver2', () => $fetch(`${api}yesterday/games/over2.5`))
+        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/over2.5`)
         if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-            const games = await posts.value.predictions
+            const games = await posts.value?.predictions
         return games?.filter((match: any) => {
             const scr = match.score.split(':');
             const home = scr[0]
@@ -124,9 +124,9 @@ const ov2 = async () => {
 }
 const ov3 = async () => {
     try {
-        const { data: posts, pending }: any = await useAsyncData('yesterGamesOver3', () => $fetch(`${api}yesterday/games/over3.5`))
+        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/over3.5`)
         if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        const games = await posts.value.predictions
+        const games = await posts.value?.predictions
         return games?.filter((match: any) => {
             const scr = match.score.split(':');
             const home = scr[0]
@@ -141,9 +141,9 @@ const ov3 = async () => {
 }
 const un3 = async () => {
     try {
-        const { data: posts, pending }: any = await useAsyncData('yesterGamesUnder3', () => $fetch(`${api}yesterday/games/under3.5`))
+        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/under3.5`)
         if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        const games = await posts.value.predictions
+        const games = await posts.value?.predictions
         return games?.filter((match: any) => {
             const scr = match.score.split(':');
             const home = scr[0]

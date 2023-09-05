@@ -51,7 +51,7 @@
             </template>
         </tbody>
     </table>
-    <div v-show="!games[0]">
+    <div v-show="games.length < 1">
         <div class="h-96 w-full grid place-content-center">
             <div :class="{ 'hidden': progress }"
                 class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">

@@ -31,7 +31,7 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="!games[0]">
+        <div v-show="games.length < 1">
             <div class="h-96 w-full grid place-content-center">
                 <div :class="{ 'hidden': progress }"
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
@@ -57,12 +57,12 @@ import api from '../../mixin/axios'
 import LazyLoad from '../LazyLoad.vue';
 
 const progress = ref();
-const games: any = ref();
+const games: any = ref([]);
 
 const home = async () => {
     try {
-        const { data: posts, pending }: any = await useAsyncData('bet_of_the_day', () => $fetch(`${api}today/games/bet_of_the_day`))
-        const myGames = filter(await posts.value.predictions);
+        const { data: posts, pending }: any = useFetch(`${api}today/games/bet_of_the_day`)
+        const myGames = filter(await posts.value?.predictions);
         if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
         games.value = myGames.slice(0, 3)
     } catch (error: any) {

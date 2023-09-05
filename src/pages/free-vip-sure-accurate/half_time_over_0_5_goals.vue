@@ -62,13 +62,12 @@ import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
 import { useRoute } from 'vue-router';
-import { todayInterface, yesterdayInterface } from '../../mixin/interface'
 const progress = ref();
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const filter = (teams: any) => {
   const uniqueHomes = new Set<string>();
@@ -83,9 +82,9 @@ const filter = (teams: any) => {
   return filteredTeams;
 };
 
-const { data: posts, pending, refresh }: any = await useAsyncData('todayGamesover0.5HT', () => $fetch(`${api}today/games/over0.5HT`))
+const { data: posts, pending, refresh }: any = useFetch(`${api}today/games/over0.5HT`)
 if (!pending) progress.value = 'Something went wrong \n Please reload the page!';
-const { data: yposts, refresh: yrefresh }: any = await useAsyncData('yesterdayGamesover0.5HT', () => $fetch(`${api}yesterday/games/over0.5HT`))
+const { data: yposts, refresh: yrefresh }: any = useFetch(`${api}yesterday/games/over0.5HT`)
 
 watchEffect(() => {
     todayGames.tips = filter(posts?.value?.predictions);

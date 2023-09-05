@@ -145,10 +145,10 @@ import { todayInterface, yesterdayInterface } from '../mixin/interface'
 
 const progress = ref();
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 
 const filter = (teams: any) => {
@@ -164,9 +164,9 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh, error }: any = await useFetch(`${api}today/games/1x2`);
+const { data: posts, pending, refresh, error }: any =  useFetch(`${api}today/games/1x2`);
 if (!pending) progress.value = 'Network Error \n Please Reload The Page!';
-const { data: yposts, error: err, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/1x2`)
+const { data: yposts, error: err, refresh: yrefresh }: any =  useFetch(`${api}yesterday/games/1x2`)
 
 watchEffect(() => {
     todayGames.tips = filter(posts?.value?.predictions);
