@@ -220,11 +220,18 @@ export default defineNuxtConfig({
         lastmod: "2023-09-08T02:02:35+01:00",
       },
     },
-    "/blog/Betensured": {
+    "/blog/betensured": {
       sitemap: {
         changefreq: "monthly",
         priority: 0.8,
         lastmod: "2023-09-09T11:06:35+01:00",
+      },
+    },
+    "/blog/eaglepredict": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-09-09T05:16:35+01:00",
       },
     },
     "/pool/fixtures": {

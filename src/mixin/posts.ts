@@ -272,4 +272,11 @@ export default [
     link: "/blog/betensured",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "Eagle Predict",
+    desc: `Eagle Predict: the most accurate football prediction site in the world. They provide analysis and educational content to help you improve your betting skills.`,
+    image: "/soccerball.webp",
+    link: "/blog/eaglepredict",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];
