@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Sure Accurate VIP Draw for Free</h1>
-            <Table :today="todayGames.tips" :refresh="refresh" :yrefresh="yrefresh" :yesterday="yesterdayGames.tips" />
+            <Table :today="todayGames.tips" refresh="todayDraw" yrefresh="yesDraw" :yesterday="yesterdayGames.tips" :progress="progress.value" />
             <Disclaimer />
         </div>
     </main>
@@ -119,13 +119,14 @@ import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
 import { useRoute } from "vue-router";
-const progress = ref();
+import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const todayGames = reactive({
-    tips: []
+    tips: Array<todayInterface>
 });
 const yesterdayGames = reactive({
-    tips: []
+    tips: Array<yesterdayInterface>
 });
+const progress = reactive({ value: '' });
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();
     const filteredTeams: any = [];
@@ -139,12 +140,18 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh }: any = useFetch(`${api}today/games/draw`)
-if (!pending) progress.value = 'Something went wrong \n Please reload the page!';
-const { data: yposts, refresh: yrefresh }: any = useFetch(`${api}yesterday/games/draw`)
+const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/draw`, {
+    key: "todayDraw"
+})
+const { data: yposts, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/draw`, {
+    key: "yesDraw"
+})
 watchEffect(() => {
     todayGames.tips = filter(posts?.value?.predictions);
     yesterdayGames.tips = filter(yposts?.value?.predictions)
+    refresh()
+    yrefresh()
+    progress.value = pending.value
 })
 
 useHead({

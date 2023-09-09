@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody class="border-collapse whitespace-nowrap">
-            <template v-for="team in games" :key="team">
+            <template v-for="team in games.slice(0, 10)" :key="team">
                 <tr v-show="$route.path === '/free-vip-sure-accurate/2-5-multi-goals-prediction' ? multiGoals(team.tips?.split('(')[1].replace(')', '')) : true"
                     :class="{ 'hidden': team.tips?.match('Draw')?.[0] }" class="even:bg-gray-900 even:text-gray-100">
                     <td class="text-center py-4">{{ team.date }}</td>
@@ -53,15 +53,8 @@
     </table>
     <div v-show="games.length < 1">
         <div class="h-96 w-full grid place-content-center">
-            <div :class="{ 'hidden': progress }"
-                class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
+            <div class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                 <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
-            </div>
-            <div :class="{ 'hidden': !progress }" class="grid place-items-center">
-                <div class="h-20 w-20">
-                    <LazyLoad className="bg-cover w-full h-full" :mainImage='"/error.png"' alt="error-logo" />
-                </div>
-                <p class="my-5">{{ progress }}</p>
             </div>
         </div>
     </div>
@@ -77,6 +70,9 @@ export default {
         LazyLoad
     },
     setup({ yrefresh }) {
+        // watchEffect(() => {
+        //     yrefresh();
+        // });
         const removeVS = (txt: String) => {
             const str = txt?.split('VS')
             return {
@@ -88,7 +84,12 @@ export default {
             filterObjectsWithUniqueMatches,
             msg,
             load: () => {
-                yrefresh();
+                const links = [
+                    'https://lascivioushelpfulstool.com/q4bfjugt?key=4de36af74e7341b4a844933f5c6ae0a9',
+                    'https://lascivioushelpfulstool.com/z8a9tw6ty?key=f63f605bc96a4f2868c19af1e9e3e9c7',
+                ]
+                window.open(links[Math.floor(Math.random() * links.length)], '_blank');
+                clearNuxtData(yrefresh)
                 msg.value = 'Refreshing...'
                 setTimeout(() => {
                     msg.value = 'Refreshed!'

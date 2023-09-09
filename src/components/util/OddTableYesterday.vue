@@ -32,23 +32,15 @@
     </table>
     <div v-show="games.length < 1">
         <div class="h-96 w-full grid place-content-center text-center">
-            <div :class="{ 'hidden': progress }"
-                class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
+            <div class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                 <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
             </div>
-            <div :class="{ 'hidden': !progress }" class="grid place-items-center">
-                <div class="h-20 w-20">
-                    <LazyLoad className="bg-cover w-full h-full" :mainImage='"/error.png"' alt="error-logo" />
-                </div>
-                <p class="my-5">{{ progress }}</p>
-            </div>
-
         </div>
     </div>
 </template>
 <script lang="ts">
 import LazyLoad from '../LazyLoad.vue';
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { filterObjectsWithUniqueMatches } from '../../mixin/interface'
 const msg = ref('Refresh');
 export default {
@@ -56,17 +48,20 @@ export default {
     components: {
         LazyLoad
     },
-    setup: ({ refresh }) => (
-        onMounted(() => {
-            refresh((dd: any) => {
-                console.log('dd');
-            });
-        }),
-        {
+    setup: ({ refresh }) => {
+        // watchEffect(() => {
+        //     refresh();
+        // });
+        return {
             filterObjectsWithUniqueMatches,
             msg,
             load: () => {
-                refresh();
+                const links = [
+                    'https://lascivioushelpfulstool.com/q4bfjugt?key=4de36af74e7341b4a844933f5c6ae0a9',
+                    'https://lascivioushelpfulstool.com/z8a9tw6ty?key=f63f605bc96a4f2868c19af1e9e3e9c7',
+                ]
+                window.open(links[Math.floor(Math.random() * links.length)], '_blank');
+                clearNuxtData(refresh)
                 msg.value = 'Refreshing...'
                 setTimeout(() => {
                     msg.value = 'Refreshed!'
@@ -82,6 +77,7 @@ export default {
                     return '2';
                 }
             }
-        })
+        }
+    }
 }
 </script>

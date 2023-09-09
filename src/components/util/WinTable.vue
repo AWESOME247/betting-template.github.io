@@ -25,7 +25,8 @@
                         <td class="text-center py-4">
                             <p>{{ team && team.home ? removeVS(team.home).strHome?.trim() : 'N/A' }}</p>
                             <p class="my-1">VS</p>
-                            <p>{{ team && team.away ? team.away?.trim() || removeVS(team.home).strAway?.trim() : 'N/A' }}</p>
+                            <p>{{ team && team.away ? team.away?.trim() || removeVS(team.home).strAway?.trim() : 'N/A' }}
+                            </p>
                         </td>
                         <td class="text-center py-4">{{ team?.tips?.replace(/(Over)|(OV)|(Ov)|(OVER)\s*/g,
                             '+').replace(/(ER)|(er)/g, '').replace(/(Home)|(HOME)\s*/g, '1').replace(/(Away)|(AWAY)\s*/g,
@@ -77,10 +78,10 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
 import api from '../../mixin/axios'
 import { useRoute } from 'vue-router'
 import LazyLoad from '../LazyLoad.vue';
+import { useFetch } from 'nuxt/app';
 const progress = ref();
 
 const path = useRoute().path;
@@ -88,90 +89,65 @@ const path = useRoute().path;
 const games: any = ref([]);
 const length = ref(0);
 
-const ov1 = async () => {
-    try {
-        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/over1.5`)
-        if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        const games = await posts.value?.predictions
-        return games?.filter((match: any) => {
-            const scr = match.score.split(':');
-            const home = scr[0]
-            const away = scr[1]
+const { data: postsOv1, pending: pendingOv1 }: any = await useFetch(`${api}yesterday/games/over1.5`)
+if (!pendingOv1) progress.value = 'Network Error \n Please Reload The Page!';
+const ov1 = postsOv1.value?.predictions
+ov1?.filter((match: any) => {
+    const scr = match.score.split(':');
+    const home = parseInt(scr[0]);
+    const away = parseInt(scr[1]);
 
-            return parseInt(home) + parseInt(away) >= 2
-        })
-    } catch (error: any) {
-        console.log(error, "  Over1");
-        if(error) progress.value = 'Network Error \n Please Reload The Page!';
-    }
-}
-const ov2 = async () => {
-    try {
-        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/over2.5`)
-        if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-            const games = await posts.value?.predictions
-        return games?.filter((match: any) => {
-            const scr = match.score.split(':');
-            const home = scr[0]
-            const away = scr[1]
+    return home + away >= 2;
+});
 
-            return parseInt(home) + parseInt(away) >= 3
-        })
-    } catch (error: any) {
-        console.log(error, "  Over 2");
-        if(error) progress.value = 'Network Error \n Please Reload The Page!';
-    }
-}
-const ov3 = async () => {
-    try {
-        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/over3.5`)
-        if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        const games = await posts.value?.predictions
-        return games?.filter((match: any) => {
-            const scr = match.score.split(':');
-            const home = scr[0]
-            const away = scr[1]
+const { data: postsOv2, pending: pendingOv2 }: any = await useFetch(`${api}yesterday/games/over2.5`)
+if (!pendingOv2) progress.value = 'Network Error \n Please Reload The Page!';
+const ov2 = postsOv2.value?.predictions
+ov2?.filter((match: any) => {
+    const scr = match.score.split(':');
+    const home = parseInt(scr[0]);
+    const away = parseInt(scr[1]);
 
-            return parseInt(home) + parseInt(away) >= 4
-        })
-    } catch (error: any) {
-        console.log(error, "  over3");
-        if(error) progress.value = 'Network Error \n Please Reload The Page!';
-    }
-}
-const un3 = async () => {
-    try {
-        const { data: posts, pending }: any = useFetch(`${api}yesterday/games/under3.5`)
-        if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        const games = await posts.value?.predictions
-        return games?.filter((match: any) => {
-            const scr = match.score.split(':');
-            const home = scr[0]
-            const away = scr[1]
+    return home + away >= 3;
+});
 
-            return parseInt(home) + parseInt(away) <= 3
-        })
-    } catch (error) {
-        console.log(error);
-        if(error) progress.value = 'Network Error \n Please Reload The Page!';
-    }
-}
+const { data: postsOv3, pending: pendingOv3 }: any = await useFetch(`${api}yesterday/games/over3.5`)
+if (!pendingOv3) progress.value = 'Network Error \n Please Reload The Page!';
+const ov3 = postsOv3.value?.predictions
+ov3?.filter((match: any) => {
+    const scr = match.score.split(':');
+    const home = parseInt(scr[0]);
+    const away = parseInt(scr[1]);
+
+    return home + away >= 4;
+});
+
+const { data: postsUn3, pending: pendingUn3 }: any = await useFetch(`${api}yesterday/games/under3.5`)
+if (!pendingUn3) progress.value = 'Network Error \n Please Reload The Page!';
+const un3 = postsUn3.value?.predictions
+un3?.filter((match: any) => {
+    const scr = match.score.split(':');
+    const home = parseInt(scr[0]);
+    const away = parseInt(scr[1]);
+
+    return home + away <= 3;
+});
 
 const getGames = async () => {
     try {
         const arr: any = [];
-        const myGames = arr.concat(await ov1(), await ov2(), await ov3(), await un3());
+        const myGames = arr.concat(ov1, ov2, ov3, un3);
         length.value = myGames.length;
         games.value = myGames;
         if (path !== '/free-vip-sure-accurate/lastest-wins')
-        games.value = myGames.slice(0, 6);
+            games.value = myGames.slice(0, 6);
     } catch (error) {
         console.log(error);
-        if(error) progress.value = 'Network Error \n Please Reload The Page!';
+        if (error) progress.value = 'Network Error \n Please Reload The Page!';
     }
 }
 
-    await getGames();
+await getGames();
 
 const removeVS = (txt: String) => {
     const str = txt.split('VS')

@@ -3,7 +3,8 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Free VIP Football Betting Tips </h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" :refresh="refresh" :yrefresh="yrefresh" :progress="progress" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="today1x2" yrefresh="yesterday"
+                :progress="progress.value" />
             <Disclaimer />
         </div>
     </main>
@@ -141,15 +142,15 @@ import api from '../mixin/axios'
 import Disclaimer from '../components/Disclaimer.vue'
 import Tipstore from '../components/util/Tipstore.vue'
 import LastestWinsVue from '../components/LastestWins.vue';
-import { todayInterface, yesterdayInterface } from '../mixin/interface'
-
-const progress = ref();
+import { yesterdayInterface, todayInterface } from '../mixin/interface';
 const todayGames = reactive({
-    tips: []
+    tips: Array<todayInterface>
 });
 const yesterdayGames = reactive({
-    tips: []
+    tips: Array<yesterdayInterface>
 });
+
+const progress = reactive({ value: '' });
 
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();
@@ -164,13 +165,20 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh, error }: any =  useFetch(`${api}today/games/1x2`);
-if (!pending) progress.value = 'Network Error \n Please Reload The Page!';
-const { data: yposts, error: err, refresh: yrefresh }: any =  useFetch(`${api}yesterday/games/1x2`)
+const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/1x2`, {
+    key: "today1x2"
+});
+
+const { data: yposts, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/1x2`, {
+    key: "yesterday1x2"
+})
 
 watchEffect(() => {
+    refresh();
+    yrefresh();
     todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
+    yesterdayGames.tips = filter(yposts?.value?.predictions);
+    progress.value = pending.value
 })
 
 const siteData = {

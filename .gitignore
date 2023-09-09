@@ -3,6 +3,7 @@
 .nitro
 .cache
 dist
+.output
 
 # Node dependencies
 node_modules
@@ -10,14 +11,17 @@ node_modules
 # Logs
 logs
 *.log
+.output
 
 # Misc
 .DS_Store
 .fleet
 .idea
+.output
 
 # Local env files
 .env
 .env.*
 !.env.example
 test.txt
+.output

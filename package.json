@@ -7,7 +7,8 @@
     "generate": "nuxt generate --production",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "firebase deploy --only hosting:betting-omoyetips"
+    "deploy": "firebase deploy --only hosting:betting-omoyetips",
+    "surge": "surge --project ./.output/public/ --domain betting.omoyetips.com"
   },
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.4.0",
@@ -36,7 +37,7 @@
   },
   "git": {
     "scripts": {
-      "pre-push": "surge --project ./.output/public/ --domain better-growth.surge.sh"
+      "pre-push": "surge --project ./.output/public/ --domain betting.omoyetips.com"
     }
   }
 }

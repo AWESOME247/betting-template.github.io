@@ -213,6 +213,20 @@ export default defineNuxtConfig({
         lastmod: "2023-08-31T02:01:35+01:00",
       },
     },
+    "/blog/r2bet-vs-omoyetips": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-09-08T02:02:35+01:00",
+      },
+    },
+    "/blog/Betensured": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-09-09T11:06:35+01:00",
+      },
+    },
     "/pool/fixtures": {
       sitemap: {
         changefreq: "weekly",

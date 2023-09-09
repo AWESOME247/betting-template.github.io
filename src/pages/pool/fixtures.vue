@@ -8,9 +8,10 @@
             </template>
         </select>
         <p v-show="loading" class="text-xl">Please wait...</p>
-        <table v-show="myColor" class="w-full border-collapse overflow-x-auto">
+        <table v-show="week?.color?.trim()?.split(' ')[0]" class="w-full border-collapse overflow-x-auto">
             <thead class="whitespace-nowrap">
-                <tr :style="{ 'background-color': myColor }" class="text-gray-100" :class="{'text-gray-100 bg-gray-700': !myColor}" >
+                <tr :style="{ 'background-color': week?.color?.trim()?.split(' ')[0] }" class="text-gray-100"
+                    :class="{ 'text-gray-100 bg-gray-700': !week?.color?.trim()?.split(' ')[0] }">
                     <th class="text-center py-2" scope="col">#</th>
                     <th class="text-center py-2" scope="col" colspan="3">Fixtures</th>
                     <th class="text-center py-2 hidden sm:block md:block" scope="col">Result</th>
@@ -19,7 +20,8 @@
             </thead>
             <tbody class="whitespace-nowrap">
                 <template v-for="team in fixtures.tips" :key="team">
-                    <tr class="border-b border-gray-200" :style="{ 'border-color': myColor?.trim()?.split(' ')[0] }"  :class="{ 'border-b-4': !team?.num }">
+                    <tr class="border-b border-gray-200" :style="{ 'border-color': week?.color?.trim()?.split(' ')[0] }"
+                        :class="{ 'border-b-4': !team?.num }">
                         <td class="text-center py-4 text-gray-950 font-bold" :class="{ 'hidden': !team?.num }">{{ team?.num
                         }}</td>
                         <td class="py-4 pl-0 sm:pl-1 md:pl-1 sm:text-start md:text-start text-end font-bold"
@@ -44,11 +46,11 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="!myColor">
+        <div v-show="!week?.color?.trim()?.split(' ')[0]">
             <div class="h-96 w-full grid place-content-center text-center">
                 <div :class="{ 'hidden': pending }"
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
-                    <LazyLoad className="bg-cover w-full h-full" mainImage='"/soccerball.webp"' alt="loading" />
+                    <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
                 </div>
                 <div :class="{ 'hidden': !pending }" class="grid place-items-center">
                     <div class="h-20 w-20">
@@ -163,15 +165,11 @@ const dates: any = reactive({
 
 const path = useRoute().path;
 
-const { data: posts, pending, refresh }: any = useFetch(`${api}pool/games`)
-const { data: date }: any = useFetch(`${api}pool/weekly/features`)
+const { data: posts, pending, refresh }: any = await useFetch(`${api}pool/games`)
+const { data: date }: any = await useFetch(`${api}pool/weekly/features`)
 if (!pending) progress.value = 'Something went wrong \n Please reload the page!';
 
-fixtures.tips = posts?.value?.predictions?.team;
-week.date = posts?.value?.predictions?.weekDay;
-week.color = posts?.value?.predictions?.bgColor;
-
-refresh()
+refresh();
 
 const updateFixtures = async (e: any) => {
     const date: string = e.target.value;
@@ -194,21 +192,21 @@ const updateFixtures = async (e: any) => {
     const userInput = date.split('-')[1];
     const mon = monthNameToNumber[userInput]?.trim();
 
-    const { data: posts, pending }: any = useFetch(`${api}pool/games/${date.split('-')[2]}-${mon}-${date.split('-')[0]}`)
-    fixtures.tips = posts?.value?.predictions?.team;
-    week.date = posts?.value?.predictions?.weekDay;
-    week.color = posts?.value?.predictions?.bgColor;
-    if (posts) loading.value = false;
+    const { data: posts, pending }: any = await useFetch(`${api}pool/games/${date.split('-')[2]}-${mon}-${date.split('-')[0]}`)
+    watchEffect(() => {
+        fixtures.tips = posts?.value?.predictions?.team;
+        week.date = posts?.value?.predictions?.weekDay;
+        week.color = posts?.value?.predictions?.bgColor;
+        if (posts) loading.value = false;
+    })
 }
 
 watchEffect(() => {
-    fixtures.tips;
-    week.date;
-    week.color;
+    fixtures.tips = posts?.value?.predictions?.team;
+    week.date = posts?.value?.predictions?.weekDay;
+    week.color = posts?.value?.predictions?.bgColor;
     dates.tips = date?.value?.predictions
-})
-
-const myColor = week.color;
+});
 
 useSchemaOrg([
     defineWebSite({
@@ -242,7 +240,7 @@ useSchemaOrg([
 const siteData = {
     title: 'Omoyetips Pool Fixtures',
     discription: 'Accurate pool fixtures & football predictions at Omoyetips. Explore tips, draws, results & elevate your football betting with Omoyetips. Totally free of charge',
-    keywords: "pool fixtures, pool fixtures for this week, weekend pool draws, advance pool fixtures, football results pool results"
+    keywords: `pool fixtures, pool fixtures for this week, weekend pool draws, advance pool fixtures, football results pool results, pool fixtures week ${week.date}, pool week ${week.date}, pool week ${week.date} fixture, pool week ${week.date}`
 };
 
 useHead({

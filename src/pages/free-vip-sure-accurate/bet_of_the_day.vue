@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Top betting tips for today</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" :refresh="refresh" :progress="progress" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="best_bet_of_the_day" :progress="progress.value" />
             <Disclaimer />
         </div>
     </main>
@@ -74,14 +74,14 @@ import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
 import { useRoute } from 'vue-router';
-import { todayInterface, yesterdayInterface } from '../../mixin/interface'
-const progress = ref();
+import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const todayGames = reactive({
-    tips: []
+    tips: Array<todayInterface>
 });
 const yesterdayGames = reactive({
     tips: []
 });
+const progress = reactive({ value: '' });
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();
     const filteredTeams: any = [];
@@ -95,11 +95,13 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh }: any = useFetch(`${api}today/games/bet_of_the_day`)
-
-if (!pending) progress.value = 'Network Error \n Please Reload The Page!';
+const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/bet_of_the_day`, {
+    key: "best_bet_of_the_day"
+})
 watchEffect(() => {
     todayGames.tips = filter(posts?.value?.predictions);
+    progress.value = pending.value;
+    refresh()
 })
 
 const siteData = {

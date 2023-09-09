@@ -258,4 +258,18 @@ export default [
     link: "/blog/good-prediction-site",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "Omoyetips vs R2bet",
+    desc: `Omoyetips vs. R2bet: Better football betting tips website with a wider range of betting tips and, reliable method of predictions. Explore betting opportunities today!`,
+    image: "/soccerball.webp",
+    link: "/blog/r2bet-vs-omoyetips",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Betensured",
+    desc: `Guaranteed more profits than losses with Betensured accurate football predictions and sports betting tips. free for over 200 leagues and 50 tennis tournaments.`,
+    image: "/soccerball.webp",
+    link: "/blog/betensured",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];
