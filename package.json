@@ -34,10 +34,5 @@
   "dependencies": {
     "nuxt-schema-org": "^2.2.0",
     "vue-gtag": "^2.0.1"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "surge --project ./.output/public/ --domain betting.omoyetips.com"
-    }
   }
 }
