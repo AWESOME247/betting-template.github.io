@@ -98,10 +98,9 @@
     </header>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 const hideSearchItems = ref(false);
 
-onMounted(() => {
+onBeforeMount(() => {
     window.onscroll = () => {
         hideSearchItems.value = true
     }
@@ -113,11 +112,6 @@ const toggle = ref(false);
 const toggler = () => {
     toggle.value = !toggle.value
     console.log(toggle.value);
-}
-</script>
-<script lang="ts">
-export default {
-    name: "Navigation"
 }
 </script>
 <style scoped>

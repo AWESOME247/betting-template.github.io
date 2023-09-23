@@ -1,8 +1,10 @@
-import VueGtag from 'vue-gtag';
+import VueGtag, { trackRouter } from 'vue-gtag-next';
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.deferHydration();
   nuxtApp.vueApp.use(VueGtag, {
-    config: { id: 'G-26XXRF43VN' }
+    property: {
+      id: 'G-26XXRF43VN'
+    }
   })
+  trackRouter(useRouter())
 })

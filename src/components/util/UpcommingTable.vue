@@ -11,8 +11,8 @@
                 </tr>
             </thead>
             <tbody class="border-collapse whitespace-nowrap">
-                <template v-for="team in games" :key="team">
-                    <tr v-show="games[1]" class="even:bg-gray-900 even:text-gray-100">
+                <template v-for="team in games.value" :key="team">
+                    <tr v-show="games.value[1]" class="even:bg-gray-900 even:text-gray-100">
                         <td class="text-center py-4">{{ team.date }}</td>
                         <td class="text-center py-4 font-semibold uppercase">{{ team.league.substring(0, 3)?.trim() }}</td>
                         <td class="text-center py-4">
@@ -31,7 +31,7 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="games.length < 1">
+        <div v-show="games.value.length < 1">
             <div class="h-96 w-full grid place-content-center">
                 <div :class="{ 'hidden': progress }"
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
@@ -57,21 +57,24 @@ import api from '../../mixin/axios'
 import LazyLoad from '../LazyLoad.vue';
 
 const progress = ref();
-const games: any = ref([]);
+const games: any = reactive({
+    value: []
+});
 
-const home = async () => {
-    try {
-        const { data: posts, pending }: any = useFetch(`${api}today/games/bet_of_the_day`)
-        const myGames = filter(await posts.value?.predictions);
-        if(!pending) progress.value = 'Network Error \n Please Reload The Page!';
-        games.value = myGames.slice(0, 3)
-    } catch (error: any) {
-        if (error.message)
-            progress.value = error.message;
+onMounted(() => {
+    const home = async () => {
+        try {
+            const { data: today } = await api.get(`today/games/bet_of_the_day`)
+            const myGames = filter(today?.predictions);
+            games.value = myGames.slice(0, 3)
+        } catch (error: any) {
+            if (error.message)
+                progress.value = error.message;
+        }
     }
-}
 
-await home();
+    home();
+})
 
 const removeVS = (txt: String) => {
     const str = txt.split('VS')

@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Free 5 Odds Daily Tips</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="straigthToday" yrefresh="straigthYesterday" :progress="progress.value" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
             <Disclaimer />
         </div>
     </main>
@@ -94,20 +94,14 @@ const filter = (teams: any) => {
     return filteredTeams.slice(4, 8).reverse();
 };
 
-const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/straigth_only`, {
-    key: "straigthToday"
-})
-const { data: yposts, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/straigth_only`, {
-    key: "straigthYesterday"
+onMounted(async () => {
+    const { data: today } = await api.get(`today/games/straigth_only`)
+    const { data: yesterday } = await api.get(`yesterday/games/straigth_only`)
+    
+    todayGames.tips = filter(today?.predictions);
+    yesterdayGames.tips = filter(yesterday?.predictions)
 })
 
-watchEffect(() => {
-    todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
-    progress.value = pending.value
-    refresh()
-    yrefresh()
-})
 
 useSchemaOrg([
     defineWebSite({

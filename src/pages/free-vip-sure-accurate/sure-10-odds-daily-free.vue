@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Sure 10 Odds Daily Free</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="straigthToday" yrefresh="straigthYesterday" :progress="progress.value" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
             <Disclaimer />
         </div>
     </main>
@@ -42,13 +42,12 @@ import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
-import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const progress = reactive({ value: '' });
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();
@@ -63,20 +62,11 @@ const filter = (teams: any) => {
     return filteredTeams.slice(0, 7).reverse();
 };
 
-const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/straigth_only`, {
-    key: "straigthToday"
-})
-const { data: yposts, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/straigth_only`, {
-    key: "straigthYesterday"
-})
+const { data: today } = await api.get(`today/games/straigth_only`)
+const { data: yesterday } = await api.get(`yesterday/games/straigth_only`)
 
-watchEffect(() => {
-    todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
-    progress.value = pending.value
-    refresh()
-    yrefresh()
-})
+todayGames.tips = filter(today?.predictions);
+yesterdayGames.tips = filter(yesterday?.predictions)
 
 useSchemaOrg([
     defineWebSite({

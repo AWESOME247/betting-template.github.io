@@ -148,12 +148,11 @@ import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
-import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const progress = reactive({ value: '' });
 const filter = (teams: any) => {
@@ -169,20 +168,14 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/straigth_only`, {
-    key: "straigthToday"
-})
-const { data: yposts, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/straigth_only`, {
-    key: "straigthYesterday"
+onMounted(async () => {
+    const { data: today} = await api.get(`today/games/straigth_only`)
+    const { data: yesterday} = await api.get(`yesterday/games/straigth_only`)
+    
+    todayGames.tips = filter(today?.predictions);
+    yesterdayGames.tips = filter(yesterday?.predictions)
 })
 
-watchEffect(() => {
-    refresh();
-    yrefresh();
-    todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
-    progress.value = pending.value
-})
 
 useSchemaOrg([
     defineWebSite({

@@ -1,6 +1,6 @@
 <template>
     <div class="flex gap-2 px-2 place-items-center justify-between">
-        <p class="sm:col-span-6">If it's not yesterday's prediction</p> <button
+        <p class="sm:col-span-6">If it's not yesterday's prediction &#128073; &#128073; &#128073;</p> <button
             class="bg-green-400 w-fit p-2 rounded-md my-3 outline outline-green-200 hover:bg-green-600 inline-flex items-center gap-1 justify-center"
             @click="load()">{{ msg }} <img :class="{ 'hidden': msg === 'Refreshed!' }" src="/refresh-reload-svgrepo-com.svg"
                 height="17" width="17" alt="Click to refresh tips for latest predictions"></button>

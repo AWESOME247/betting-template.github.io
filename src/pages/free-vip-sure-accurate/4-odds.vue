@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Odd 4 Sure Wins</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="today4odds" yrefresh="yesterday4odds" :progress="progress.value" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
             <Disclaimer />
         </div>
     </main>
@@ -62,10 +62,10 @@ import Tipstore from '../../components/util/Tipstore.vue'
 import { useRoute } from 'vue-router';
 import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const progress = reactive({ value: '' });
 const filter = (teams: any) => {
@@ -83,19 +83,13 @@ const filter = (teams: any) => {
 
 const path = useRoute().path;
 
-const { data: posts, pending, refresh }: any = await useFetch(`${ api }today/games/4odds`, {
-    key: "today4odds"
+onMounted(async () => {
+    const { data: today } = await api.get(`today/games/4odds`)
+    const { data: yesterday } = await api.get(`yesterday/games/4odds`)
+    todayGames.tips = filter(today?.predictions);
+    yesterdayGames.tips = filter(yesterday?.predictions);
 })
-const { data: yposts, refresh: yrefresh }: any = await useFetch(`${ api }yesterday/games/4odds`, {
-    key: "yesterday4odds"
-})
-watchEffect(() => {
-    todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
-    progress.value = pending.value
-    refresh()
-    yrefresh()
-})
+
 
 useSchemaOrg([
     defineWebSite({

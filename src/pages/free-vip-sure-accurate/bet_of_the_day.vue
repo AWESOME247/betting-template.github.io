@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Top betting tips for today</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="best_bet_of_the_day" :progress="progress.value" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
             <Disclaimer />
         </div>
     </main>
@@ -68,20 +68,17 @@
     </section>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, reactive } from 'vue';
 import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
 import { useRoute } from 'vue-router';
-import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
     tips: []
 });
-const progress = reactive({ value: '' });
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();
     const filteredTeams: any = [];
@@ -95,14 +92,12 @@ const filter = (teams: any) => {
     return filteredTeams;
 };
 
-const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/bet_of_the_day`, {
-    key: "best_bet_of_the_day"
+onMounted(async () => {
+        const { data: today } = await api.get(`today/games/bet_of_the_day`);
+    
+    todayGames.tips = filter(today?.predictions);
 })
-watchEffect(() => {
-    todayGames.tips = filter(posts?.value?.predictions);
-    progress.value = pending.value;
-    refresh()
-})
+
 
 const siteData = {
     title: 'Sure VIP Bet of the Day - Betting Omoyetips',

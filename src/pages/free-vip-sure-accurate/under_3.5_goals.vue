@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Sure Accurate VIP Under3.5 Goals for Free</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="todayUn3" yrefresh="yesUn3" :progress="progress.value" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
             <Disclaimer />
         </div>
     </main>
@@ -103,10 +103,10 @@ import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 
 const progress = reactive({ value: '' });
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const filter = (teams: any) => {
   const uniqueHomes = new Set<string>();
@@ -120,19 +120,11 @@ const filter = (teams: any) => {
   });
   return filteredTeams;
 };
-
-const { data: posts, pending, refresh }: any = await useFetch(`${api}today/games/Under3.5`, {
-    key: "todayUn3"
-})
-const { data: yposts, refresh: yrefresh }: any = await useFetch(`${api}yesterday/games/Under3.5`, {
-    key: "yesUn3"
-})
-watchEffect(() => {
-    todayGames.tips = filter(posts?.value?.predictions);
-    yesterdayGames.tips = filter(yposts?.value?.predictions)
-    progress.value = pending.value
-    refresh();
-    yrefresh();
+onMounted(async () => {
+    const { data: today } = await api.get(`today/games/Under3.5`)
+    const { data: yesterday } = await api.get(`yesterday/games/Under3.5`)
+    todayGames.tips = filter(today?.predictions);
+    yesterdayGames.tips = filter(yesterday?.predictions)
 })
 
 useHead({

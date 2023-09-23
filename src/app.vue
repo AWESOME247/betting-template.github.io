@@ -1,7 +1,7 @@
 <template>
   <VitePwaManifest />
-  <templateVue />
+  <NuxtLayout>
+    <NuxtLoadingIndicator color="#228b22" />
+    <NuxtPage />
+  </NuxtLayout>
 </template>
-<script lang="ts" setup>
-  import templateVue from './template.vue';
-</script>

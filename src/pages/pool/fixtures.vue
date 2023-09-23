@@ -1,6 +1,6 @@
 <template>
     <section class="max-w-screen-lg md:mx-3 lg:mx-auto sm:mx-auto my-9 overflow-x-hidden mx-2">
-        <h1 class="text-3xl font-bold">Pool Fixtures Week {{ week.date }}</h1>
+        <h1 class="text-3xl font-bold">Pool Fixtures Week {{ week.date || '...' }}</h1>
         <h2 class="text-xl font-medium">UK {{ new Date().getFullYear() }}/{{ new Date().getFullYear() + 1 }}</h2>
         <select class="my-6 border p-3" @change="updateFixtures">
             <template v-for="(date, i) in dates.tips" :key="i">
@@ -8,57 +8,53 @@
             </template>
         </select>
         <p v-show="loading" class="text-xl">Please wait...</p>
-        <table v-show="week?.color?.trim()?.split(' ')[0]" class="w-full border-collapse overflow-x-auto">
-            <thead class="whitespace-nowrap">
-                <tr :style="{ 'background-color': week?.color?.trim()?.split(' ')[0] }" class="text-gray-100"
-                    :class="{ 'text-gray-100 bg-gray-700': !week?.color?.trim()?.split(' ')[0] }">
-                    <th class="text-center py-2" scope="col">#</th>
-                    <th class="text-center py-2" scope="col" colspan="3">Fixtures</th>
-                    <th class="text-center py-2 hidden sm:block md:block" scope="col">Result</th>
-                    <th class="text-center py-2" scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody class="whitespace-nowrap">
-                <template v-for="team in fixtures.tips" :key="team">
-                    <tr class="border-b border-gray-200" :style="{ 'border-color': week?.color?.trim()?.split(' ')[0] }"
-                        :class="{ 'border-b-4': !team?.num }">
-                        <td class="text-center py-4 text-gray-950 font-bold" :class="{ 'hidden': !team?.num }">{{ team?.num
-                        }}</td>
-                        <td class="py-4 pl-0 sm:pl-1 md:pl-1 sm:text-start md:text-start text-end font-bold"
-                            :class="{ 'hidden': !team?.num }">
-                            <p>{{ team?.home }}</p>
-                        </td>
-                        <td class="py-4 sm:px-1 md:px-1 px-0 text-center text-red-600"
-                            :class="{ 'hidden': !team?.num, 'text-green-500 font-bold': parseInt(team?.score?.split(')')[0]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) === parseInt(team?.score?.split(')')[1]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) }">
-                            {{ team.score ? team.score : "VS" }}
-                        </td>
-                        <td class="py-4 sm:text-end md:text-end text-start font-bold" :class="{ 'hidden': !team?.num }">
-                            {{ team?.away }}
-                        </td>
-                        <td class="py-4 text-center hidden sm:block md:block"
-                            :class="{ 'hidden sm:hidden md:hidden': !team?.num, 'text-green-700 font-bold capitalize': team?.result !== 'Away' && team?.result !== 'Home' }">
-                            {{ team?.result }}
-                        </td>
-                        <td class="py-4 text-center" :class="{ 'hidden': !team?.num }">
-                            {{ team?.status }}
-                        </td>
+        <div v-show="!pending.value">
+            <table v-show="week?.color?.trim()?.split(' ')[0]" class="w-full border-collapse overflow-x-auto">
+                <thead class="whitespace-nowrap">
+                    <tr :style="{ 'background-color': week?.color?.trim()?.split(' ')[0] }" class="text-gray-100"
+                        :class="{ 'text-gray-100 bg-gray-700': !week?.color?.trim()?.split(' ')[0] }">
+                        <th class="text-center py-2" scope="col">#</th>
+                        <th class="text-center py-2" scope="col" colspan="3">Fixtures</th>
+                        <th class="text-center py-2 hidden sm:block md:block" scope="col">Result</th>
+                        <th class="text-center py-2" scope="col">Status</th>
                     </tr>
-                </template>
-            </tbody>
-        </table>
-        <div v-show="!week?.color?.trim()?.split(' ')[0]">
+                </thead>
+                <tbody class="whitespace-nowrap">
+                    <template v-for="team in fixtures.tips" :key="team">
+                        <tr class="border-b border-gray-200" :style="{ 'border-color': week?.color?.trim()?.split(' ')[0] }"
+                            :class="{ 'border-b-4': !team?.num }">
+                            <td class="text-center py-4 text-gray-950 font-bold" :class="{ 'hidden': !team?.num }">{{
+                                team?.num
+                            }}</td>
+                            <td class="py-4 pl-0 sm:pl-1 md:pl-1 sm:text-start md:text-start text-end font-bold"
+                                :class="{ 'hidden': !team?.num }">
+                                <p>{{ team?.home }}</p>
+                            </td>
+                            <td class="py-4 sm:px-1 md:px-1 px-0 text-center text-red-600"
+                                :class="{ 'hidden': !team?.num, 'text-green-500 font-bold': parseInt(team?.score?.split(')')[0]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) === parseInt(team?.score?.split(')')[1]?.replace(/[a-zA-Z!@#$%^&*()_+={}[\]:;<>,.?\/\\|~-]/g, '')) }">
+                                {{ team.score ? team.score : "VS" }}
+                            </td>
+                            <td class="py-4 sm:text-end md:text-end text-start font-bold" :class="{ 'hidden': !team?.num }">
+                                {{ team?.away }}
+                            </td>
+                            <td class="py-4 text-center hidden sm:block md:block"
+                                :class="{ 'hidden sm:hidden md:hidden': !team?.num, 'text-green-700 font-bold capitalize': team?.result !== 'Away' && team?.result !== 'Home' }">
+                                {{ team?.result }}
+                            </td>
+                            <td class="py-4 text-center" :class="{ 'hidden': !team?.num }">
+                                {{ team?.status }}
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div v-show="pending.value">
             <div class="h-96 w-full grid place-content-center text-center">
-                <div :class="{ 'hidden': pending }"
+                <div
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                     <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
                 </div>
-                <div :class="{ 'hidden': !pending }" class="grid place-items-center">
-                    <div class="h-20 w-20">
-                        <LazyLoad className="bg-cover w-full h-full" :mainImage='"/error.png"' alt="error-logo" />
-                    </div>
-                    <p class="my-5">{{ pending }}</p>
-                </div>
-
             </div>
         </div>
     </section>
@@ -147,7 +143,7 @@ import { ref, watchEffect } from 'vue';
 import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import LazyLoad from '../../components/LazyLoad.vue';
-const progress = ref();
+const pending = reactive({ value: true });
 const loading = ref(false)
 
 const fixtures: any = reactive({
@@ -165,11 +161,17 @@ const dates: any = reactive({
 
 const path = useRoute().path;
 
-const { data: posts, pending, refresh }: any = await useFetch(`${api}pool/games`)
-const { data: date }: any = await useFetch(`${api}pool/weekly/features`)
-if (!pending) progress.value = 'Something went wrong \n Please reload the page!';
+const { data: posts } = await api.get('/pool/games', {
+    cache: {
+        maxAge: 1000 * 60 * 60 * 24,
+    }
+})
 
-refresh();
+const { data: date } = await api.get(`/pool/weekly/features`, {
+    cache: {
+        maxAge: 1000 * 60 * 60 * 24,
+    }
+})
 
 const updateFixtures = async (e: any) => {
     const date: string = e.target.value;
@@ -192,20 +194,22 @@ const updateFixtures = async (e: any) => {
     const userInput = date.split('-')[1];
     const mon = monthNameToNumber[userInput]?.trim();
 
-    const { data: posts, pending }: any = await useFetch(`${api}pool/games/${date.split('-')[2]}-${mon}-${date.split('-')[0]}`)
+    const { data: posts } = await api.get(`/pool/games/${date.split('-')[2]}-${mon}-${date.split('-')[0]}`)
     watchEffect(() => {
-        fixtures.tips = posts?.value?.predictions?.team;
-        week.date = posts?.value?.predictions?.weekDay;
-        week.color = posts?.value?.predictions?.bgColor;
-        if (posts) loading.value = false;
+        fixtures.tips = posts?.predictions?.team;
+        week.date = posts?.predictions?.weekDay;
+        week.color = posts?.predictions?.bgColor;
+        if (posts) loading.value = false, pending.value = false;
     })
 }
 
+
 watchEffect(() => {
-    fixtures.tips = posts?.value?.predictions?.team;
-    week.date = posts?.value?.predictions?.weekDay;
-    week.color = posts?.value?.predictions?.bgColor;
-    dates.tips = date?.value?.predictions
+    fixtures.tips = posts?.predictions?.team;
+    week.date = posts?.predictions?.weekDay;
+    week.color = posts?.predictions?.bgColor;
+    dates.tips = date?.predictions;
+    if (posts) pending.value = false;
 });
 
 useSchemaOrg([

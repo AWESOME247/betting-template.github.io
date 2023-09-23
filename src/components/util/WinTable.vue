@@ -18,8 +18,8 @@
                 </tr>
             </thead>
             <tbody class="border-collapse whitespace-nowrap">
-                <template v-for="team in games" :key="team">
-                    <tr v-show="games[1]" class="even:bg-gray-900 even:text-gray-100">
+                <template v-for="team in games.value" :key="team">
+                    <tr v-show="games.value[1]" class="even:bg-gray-900 even:text-gray-100">
                         <td class="text-center py-4">{{ team?.date }}</td>
                         <td class="text-center py-4 font-semibold">{{ team?.league?.substring(0, 3)?.trim() }}</td>
                         <td class="text-center py-4">
@@ -57,7 +57,7 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="games.length < 1">
+        <div v-show="games.value.length < 1">
             <div class="h-96 w-full grid place-content-center">
                 <div :class="{ 'hidden': progress }"
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
@@ -81,73 +81,71 @@
 import api from '../../mixin/axios'
 import { useRoute } from 'vue-router'
 import LazyLoad from '../LazyLoad.vue';
-import { useFetch } from 'nuxt/app';
 const progress = ref();
 
 const path = useRoute().path;
 
-const games: any = ref([]);
+const games: any = reactive({
+    value: []
+});
 const length = ref(0);
 
-const { data: postsOv1, pending: pendingOv1 }: any = await useFetch(`${api}yesterday/games/over1.5`)
-if (!pendingOv1) progress.value = 'Network Error \n Please Reload The Page!';
-const ov1 = postsOv1.value?.predictions
-ov1?.filter((match: any) => {
-    const scr = match.score.split(':');
-    const home = parseInt(scr[0]);
-    const away = parseInt(scr[1]);
+onMounted(async () => {
+    const { data: postsOv1 } = await api.get(`yesterday/games/over1.5`)
+    const over1 = postsOv1?.predictions
+    const ov1 = over1?.filter((match: any) => {
+        const scr = match.score.split(':');
+        const home = parseInt(scr[0]);
+        const away = parseInt(scr[1]);
+        return home + away >= 2;
+    });
 
-    return home + away >= 2;
-});
+    const { data: postsOv2 } = await api.get(`yesterday/games/over2.5`)
+    const over2 = postsOv2?.predictions
+    const ov2 = over2?.filter((match: any) => {
+        const scr = match.score.split(':');
+        const home = parseInt(scr[0]);
+        const away = parseInt(scr[1]);
 
-const { data: postsOv2, pending: pendingOv2 }: any = await useFetch(`${api}yesterday/games/over2.5`)
-if (!pendingOv2) progress.value = 'Network Error \n Please Reload The Page!';
-const ov2 = postsOv2.value?.predictions
-ov2?.filter((match: any) => {
-    const scr = match.score.split(':');
-    const home = parseInt(scr[0]);
-    const away = parseInt(scr[1]);
+        return home + away >= 3;
+    });
 
-    return home + away >= 3;
-});
+    const { data: postsOv3 } = await api.get(`yesterday/games/over3.5`)
+    const over3 = postsOv3?.predictions
+    const ov3 = over3?.filter((match: any) => {
+        const scr = match.score.split(':');
+        const home = parseInt(scr[0]);
+        const away = parseInt(scr[1]);
 
-const { data: postsOv3, pending: pendingOv3 }: any = await useFetch(`${api}yesterday/games/over3.5`)
-if (!pendingOv3) progress.value = 'Network Error \n Please Reload The Page!';
-const ov3 = postsOv3.value?.predictions
-ov3?.filter((match: any) => {
-    const scr = match.score.split(':');
-    const home = parseInt(scr[0]);
-    const away = parseInt(scr[1]);
+        return home + away >= 4;
+    });
 
-    return home + away >= 4;
-});
+    const { data: postsUn3 } = await api.get(`yesterday/games/under3.5`)
+    const under3 = postsUn3?.predictions
+    const un3 = under3?.filter((match: any) => {
+        const scr = match.score.split(':');
+        const home = parseInt(scr[0]);
+        const away = parseInt(scr[1]);
 
-const { data: postsUn3, pending: pendingUn3 }: any = await useFetch(`${api}yesterday/games/under3.5`)
-if (!pendingUn3) progress.value = 'Network Error \n Please Reload The Page!';
-const un3 = postsUn3.value?.predictions
-un3?.filter((match: any) => {
-    const scr = match.score.split(':');
-    const home = parseInt(scr[0]);
-    const away = parseInt(scr[1]);
+        return home + away <= 3;
+    });
 
-    return home + away <= 3;
-});
-
-const getGames = async () => {
-    try {
-        const arr: any = [];
-        const myGames = arr.concat(ov1, ov2, ov3, un3);
-        length.value = myGames.length;
-        games.value = myGames;
-        if (path !== '/free-vip-sure-accurate/lastest-wins')
-            games.value = myGames.slice(0, 6);
-    } catch (error) {
-        console.log(error);
-        if (error) progress.value = 'Network Error \n Please Reload The Page!';
+    const getGames = async () => {
+        try {
+            const arr: any = [];
+            const myGames = arr.concat(ov1, ov2, ov3, un3);
+            length.value = myGames.length;
+            games.value = myGames;
+            if (path !== '/free-vip-sure-accurate/lastest-wins')
+                games.value = myGames.slice(0, 6);
+        } catch (error) {
+            console.log(error);
+            if (error) progress.value = 'Network Error \n Please Reload The Page!';
+        }
     }
-}
 
-await getGames();
+    getGames();
+})
 
 const removeVS = (txt: String) => {
     const str = txt.split('VS')

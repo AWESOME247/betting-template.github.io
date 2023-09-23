@@ -1,6 +1,6 @@
 <template>
     <div id="tButton" class="flex gap-2 px-2 place-items-center justify-between">
-        <p class="sm:col-span-6">If it's not today's prediction</p> <button
+        <p class="sm:col-span-6">More games available click &#128073; &#128073; &#128073;</p> <button
             class="bg-green-400 w-fit p-2 rounded-md my-3 outline outline-green-200 hover:bg-green-600 inline-flex items-center gap-1 justify-center"
             @click="load()">{{ msg }} <img :class="{ 'hidden': msg === 'Refreshed!' }" src="/refresh-reload-svgrepo-com.svg"
                 height="17" width="17" alt="Click to refresh tips for latest predictions"></button>
@@ -51,7 +51,7 @@
         </tbody>
     </table>
     <div v-show="games.length < 1">
-        <div class="h-96 w-full grid place-content-center text-center">
+        <div class="h-96 w-full grid place-content-center">
             <div
                 class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                 <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
