@@ -25,7 +25,6 @@
 <script setup lang="ts">
 import posts from '../../mixin/posts';
 import LazyLoad from '../../components/LazyLoad.vue';
-import { useRoute } from 'vue-router';
 const siteData = {
     title: 'Omoyetips betting blog',
     discription: 'Get practical tips and insights on sports betting, winning, and building wealth with Omoyetips.',

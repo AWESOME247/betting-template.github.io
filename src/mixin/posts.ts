@@ -300,4 +300,25 @@ export default [
     link: "/blog/sure-tips-777",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "666 Soccer Prediction",
+    desc: `Omoyetips your free and reliable source for soccer predictions. Say goodbye to 666 soccer prediction and embrace accurate tips that can boost your betting wins`,
+    image: "/soccerball.webp",
+    link: "/blog/666-soccer-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Bet Master Tips",
+    desc: `Your trusted source for free, accurate bet master tips. Elevate your bettings with a diverse range of betting tips. Win smarter, not harder, with Omoyetips!`,
+    image: "/soccerball.webp",
+    link: "/blog/bet-master-tips",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "King Prediction",
+    desc: `Kingspredict the power of data-driven sports predictions with King prediction your trusted source for free, accurate football and basketball betting tips.`,
+    image: "/soccerball.webp",
+    link: "/blog/kingprediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];

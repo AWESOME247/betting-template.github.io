@@ -102,7 +102,6 @@
 </template>
 <script setup lang="ts">
 import Tipstore from '../../components/util/Tipstore.vue'
-import { useRoute } from "vue-router";
 useHead({
     title: 'Comparing Football Prediction Websites: Meritpredict vs Omoyetips',
     meta: [

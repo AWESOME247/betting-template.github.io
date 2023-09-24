@@ -45,7 +45,6 @@
 <script setup lang="ts">
 import Tipstore from '../../components/util/Tipstore.vue'
 import LittleBlog from '../../components/util/LittleBlog.vue';
-import { useRoute } from "vue-router";
 
 useHead({
     title: 'Best Banker Single Bet of the Day',

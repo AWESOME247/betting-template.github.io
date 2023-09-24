@@ -90,7 +90,6 @@
 </template>
 <script setup lang="ts">
 import Tipstore from '../../components/util/Tipstore.vue'
-import { useRoute } from "vue-router";
 import LittleBlog from '../../components/util/LittleBlog.vue';
 useHead({
     title: 'Sure Six Straight Win For Today',

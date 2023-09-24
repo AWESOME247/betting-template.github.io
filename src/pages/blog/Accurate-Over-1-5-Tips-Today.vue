@@ -98,7 +98,6 @@
 </template>
 <script setup lang="ts">
 import Tipstore from '../../components/util/Tipstore.vue'
-import { useRoute } from "vue-router";
 import LittleBlog from '../../components/util/LittleBlog.vue';
 useHead({
     title: 'Accurate Over 1.5 Tips Today',

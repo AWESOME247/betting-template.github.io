@@ -37,7 +37,6 @@
 </template>
 <script setup lang="ts">
 import Tipstore from '../../components/util/Tipstore.vue'
-import { useRoute } from "vue-router";
 import LittleBlog from '../../components/util/LittleBlog.vue';
 useHead({
     title: 'Tips180 vs. Omoyetips: Unlocking Winning Strategies for Football Betting',

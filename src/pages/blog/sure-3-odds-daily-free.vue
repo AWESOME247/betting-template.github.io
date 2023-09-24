@@ -43,7 +43,6 @@
 </template>
 <script setup lang="ts">
 import Tipstore from '../../components/util/Tipstore.vue'
-import { useRoute } from 'vue-router';
 const path = useRoute().path.replace(/\/$/, "");
 
 useSchemaOrg([
