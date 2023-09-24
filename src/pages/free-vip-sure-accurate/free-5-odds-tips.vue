@@ -75,10 +75,10 @@ import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
 import { yesterdayInterface, todayInterface } from '../../mixin/interface';
 const todayGames = reactive({
-    tips: Array<todayInterface>
+    tips: []
 });
 const yesterdayGames = reactive({
-    tips: Array<yesterdayInterface>
+    tips: []
 });
 const progress = reactive({ value: '' });
 const filter = (teams: any) => {

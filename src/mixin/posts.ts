@@ -279,4 +279,25 @@ export default [
     link: "/blog/eaglepredict",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "Sure Tips 360",
+    desc: `Omoyetips is the best prediction site for sure matches. Get tips on how to spot sure tips, make money, and win bets with Omoyetips sure tips 360 predictions.`,
+    image: "/soccerball.webp",
+    link: "/blog/sure-tips-360",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Black Magic Soccer Prediction",
+    desc: `Omoyetips is a super alternative to Black Magic Soccer Predictions. It is free, has a better track record of winning tips, and offers a wider range of football predictions.`,
+    image: "/soccerball.webp",
+    link: "/blog/black-magic-soccer-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Sure Tips 777",
+    desc: `Omoyetips is a super alternative to Sure Tips 777. It is free, has a better track record of winning tips, and offers a wider range of football predictions.`,
+    image: "/soccerball.webp",
+    link: "/blog/sure-tips-777",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];

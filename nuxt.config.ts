@@ -235,6 +235,27 @@ export default defineNuxtConfig({
         lastmod: "2023-09-09T05:16:35+01:00",
       },
     },
+    "/blog/sure-tips-360": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-09-09T05:02:38+01:00",
+      },
+    },
+    "/blog/sure-tips-777": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-09-23T05:02:38+01:00",
+      },
+    },
+    "/blog/black-magic-soccer-prediction": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-09-23T05:03:38+01:00",
+      },
+    },
     "/pool/fixtures": {
       sitemap: {
         changefreq: "weekly",
