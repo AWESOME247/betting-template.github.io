@@ -186,13 +186,6 @@ export default defineNuxtConfig({
         lastmod: "2023-08-17T11:01:35+01:00",
       },
     },
-    "/blog/soccer-prediction": {
-      sitemap: {
-        changefreq: "monthly",
-        priority: 0.8,
-        lastmod: "2023-08-30T11:01:35+01:00",
-      },
-    },
     "/blog/football-prediction": {
       sitemap: {
         changefreq: "monthly",
@@ -275,6 +268,55 @@ export default defineNuxtConfig({
         changefreq: "monthly",
         priority: 0.8,
         lastmod: "2023-09-23T05:06:38+01:00",
+      },
+    },
+    "/blog/prediction-football-today": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-12T09:06:38+01:00",
+      },
+    },
+    "/blog/soccer-prediction": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-13T08:06:38+01:00",
+      },
+    },
+    "/blog/win-only-tips": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-13T09:06:38+01:00",
+      },
+    },
+    "/blog/sure-combo-tips": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-15T09:06:38+01:00",
+      },
+    },
+    "/blog/daily-98-winning-tips": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-13T07:08:38+01:00",
+      },
+    },
+    "/blog/254-sure-tips": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-14T07:08:38+01:00",
+      },
+    },
+    "/blog/1800-tips-prediction": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-10-13T06:09:38+01:00",
       },
     },
     "/pool/fixtures": {

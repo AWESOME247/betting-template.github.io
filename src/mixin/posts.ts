@@ -321,4 +321,53 @@ export default [
     link: "/blog/kingprediction",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "Prediction Football Today",
+    desc: `Unlock the secrets of successful prediction football today! Learn the strategies, tips, and fundamental factors to make the best accurate match predictions.`,
+    image: "/soccerball.webp",
+    link: "/blog/prediction-football-today",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Soccer Prediction",
+    desc: `Elevate your betting game with Omoyetips: Your source for accurate & free soccer predictions every day of the week. Bet smarter, win more! Explore today.`,
+    image: "/soccerball.webp",
+    link: "/blog/soccer-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Win Only Tips",
+    desc: `Win Only Tips, Simplify your betting experience, boost your confidence, and increase your winning potential with clear-cut predictions from omoye soccer tips.`,
+    image: "/soccerball.webp",
+    link: "/blog/win-only-tips",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Daily 98 Winning Tips",
+    desc: `Explore the world of football predictions and uncover the secrets behind Omoyetips Daily 98 Winning Tips. Enhance your soccer betting experience with experts.`,
+    image: "/soccerball.webp",
+    link: "/blog/daily-98-winning-tips",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "1800 Tips Prediction",
+    desc: `Unlock success in soccer betting with 1800 tips prediction by Omoyetips. Elevate your strategy, diversify bets, and join a winning community. Start today!`,
+    image: "/soccerball.webp",
+    link: "/blog/1800-tips-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "254 Sure Tips",
+    desc: `Explore "254 Sure Tips Today" - a platform making bold football match predictions. We delve into sources, the perfect record, and the fixed match controversy.`,
+    image: "/soccerball.webp",
+    link: "/blog/254-sure-tips",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Sure Combo Tips",
+    desc: `Sure Combo Tips in sports betting! Explore examples like Home win or BTTS, or home win or over/under. Use these combinations to enhance your betting strategy.`,
+    image: "/soccerball.webp",
+    link: "/blog/sure-combo-tips",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];

@@ -98,7 +98,6 @@ onMounted(async () => {
     todayGames.tips = filter(today?.predictions);
 })
 
-
 const siteData = {
     title: 'Sure VIP Bet of the Day - Betting Omoyetips',
     discription: 'Get a comprehensive guide to our Best Bets of the Day, including a calculative example and tips to maximize profits from Omoyetips experts.',

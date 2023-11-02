@@ -121,8 +121,8 @@ const filter = (teams: any) => {
   return filteredTeams;
 };
 onMounted(async () => {
-    const { data: today } = await api.get(`today/games/Under3.5`)
-    const { data: yesterday } = await api.get(`yesterday/games/Under3.5`)
+    const { data: today } = await api.get(`today/games/under3.5`)
+    const { data: yesterday } = await api.get(`yesterday/games/under3.5`)
     todayGames.tips = filter(today?.predictions);
     yesterdayGames.tips = filter(yesterday?.predictions)
 })
