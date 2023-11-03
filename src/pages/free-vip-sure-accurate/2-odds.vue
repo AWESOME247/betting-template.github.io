@@ -113,9 +113,9 @@ const filter = (teams: any) => {
 onMounted(async () => {
     const { data: today } = await api.get(`today/games/2odds`)
     const { data: yesterday } = await api.get(`yesterday/games/2odds`)
-
-    todayGames.tips = filter(today.predictions);
-    yesterdayGames.tips = filter(yesterday.predictions);
+    
+    todayGames.tips = filter(today?.predictions);
+    yesterdayGames.tips = filter(yesterday?.predictions);
 })
 
 useHead({

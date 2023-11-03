@@ -135,7 +135,6 @@
     </section>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, reactive } from 'vue';
 import Table from '../components/util/Table.vue';
 import api from '../mixin/axios'
 import Disclaimer from '../components/Disclaimer.vue'
@@ -166,7 +165,6 @@ const filter = (teams: any) => {
 onMounted(async () => {
     const { data: today } = await api.get(`today/games/1x2`);
     const { data: yesterday } = await api.get(`yesterday/games/1x2`);
-
     todayGames.tips = filter(today?.predictions);
     yesterdayGames.tips = filter(yesterday?.predictions);
 })
