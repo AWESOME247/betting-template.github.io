@@ -1,5 +1,5 @@
 # https://github.com/actions/deploy-pages#usage
-name: Omoye Betting Tips
+name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
 
       # Pick your own package manager and build script
       - run: npm install
-      - run: npm run build
+      - run: npm run generate
         env:
           NITRO_PRESET: github_pages
 
@@ -46,6 +46,6 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Omoye Betting Tips
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
