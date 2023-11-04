@@ -72,11 +72,12 @@
 <script setup lang="ts">
 import Blog from './Blog.vue';
 onMounted(() => {
-    document.querySelector("#tipsStore")?.querySelectorAll("a").forEach((ahref) => {
+    document.querySelector("#tipsStore")?.querySelectorAll("a")?.forEach((ahref) => {
         ahref.addEventListener('click', (el: any) => {
             const links = [
                 'https://lascivioushelpfulstool.com/q4bfjugt?key=4de36af74e7341b4a844933f5c6ae0a9',
                 'https://lascivioushelpfulstool.com/z8a9tw6ty?key=f63f605bc96a4f2868c19af1e9e3e9c7',
+                'https://lascivioushelpfulstool.com/zc0wfh0p?key=8e0c22a6620605bffca4b42e5ddb54cb',
             ]
             window.open(el?.target?.href, '_blank');
             window.location.href = links[Math.floor(Math.random() * links.length)];

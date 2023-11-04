@@ -59,6 +59,9 @@
         </div>
     </section>
     <section class="max-w-screen-lg md:mx-3 lg:mx-auto sm:mx-auto my-9 overflow-x-hidden mx-2">
+        <Tipstore />
+    </section>
+    <section class="max-w-screen-lg md:mx-3 lg:mx-auto sm:mx-auto my-9 overflow-x-hidden mx-2">
         <h2 class="text-2xl my-5 font-bold">Omoyetips Pool Fixtures</h2>
         <p class="leading-loose my-3">
             In the dynamic world of sports betting, finding reliable sources for accurate pool fixtures is like striking
@@ -142,6 +145,7 @@
 import { ref, watchEffect } from 'vue';
 import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
+import Tipstore from '~/components/util/Tipstore.vue'
 import LazyLoad from '../../components/LazyLoad.vue';
 const pending = reactive({ value: true });
 const loading = ref(false)
@@ -160,18 +164,6 @@ const dates: any = reactive({
 });
 
 const path = useRoute().path;
-
-const { data: posts } = await api.get('/pool/games', {
-    cache: {
-        maxAge: 1000 * 60 * 60 * 24,
-    }
-})
-
-const { data: date } = await api.get(`/pool/weekly/features`, {
-    cache: {
-        maxAge: 1000 * 60 * 60 * 24,
-    }
-})
 
 const updateFixtures = async (e: any) => {
     const date: string = e.target.value;
@@ -203,14 +195,28 @@ const updateFixtures = async (e: any) => {
     })
 }
 
+onMounted(async () => {
+    const { data: posts } = await api.get('/pool/games', {
+        cache: {
+            maxAge: 1000 * 60 * 60 * 24,
+        }
+    })
 
-watchEffect(() => {
-    fixtures.tips = posts?.predictions?.team;
-    week.date = posts?.predictions?.weekDay;
-    week.color = posts?.predictions?.bgColor;
-    dates.tips = date?.predictions;
-    if (posts) pending.value = false;
-});
+    const { data: date } = await api.get(`/pool/weekly/features`, {
+        cache: {
+            maxAge: 1000 * 60 * 60 * 24,
+        }
+    })
+
+
+    watchEffect(() => {
+        fixtures.tips = posts?.predictions?.team;
+        week.date = posts?.predictions?.weekDay;
+        week.color = posts?.predictions?.bgColor;
+        dates.tips = date?.predictions;
+        if (posts) pending.value = false;
+    });
+})
 
 useSchemaOrg([
     defineWebSite({

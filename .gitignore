@@ -25,3 +25,4 @@ logs
 !.env.example
 test.txt
 .output
+git-pages.js

@@ -217,7 +217,7 @@ useHead({
         },
     ],
     link: [{
-        rel: "canonical", href: 'https://betting.omoyetips.com'
+        rel: "canonical", href: 'https://betting.omoyetips.com/'
     }],
 })
 </script>
