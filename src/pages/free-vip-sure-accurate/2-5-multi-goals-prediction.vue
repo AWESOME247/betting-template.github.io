@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">2-5 Multi Goals Prediction</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" refresh="straigthToday" yrefresh="straigthYesterday" :progress="progress.value" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" :isLoading="isLoading" refresh="straigthToday" yrefresh="straigthYesterday" />
             <Disclaimer />
         </div>
     </main>
@@ -154,7 +154,7 @@ const todayGames = reactive({
 const yesterdayGames = reactive({
     tips: []
 });
-const progress = reactive({ value: '' });
+const isLoading = ref(true);
 const filter = (teams: any) => {
     const uniqueHomes = new Set<string>();
     const filteredTeams: any = [];
@@ -169,11 +169,17 @@ const filter = (teams: any) => {
 };
 
 onMounted(async () => {
-    const { data: today} = await api.get(`today/games/straigth_only`)
-    const { data: yesterday} = await api.get(`yesterday/games/straigth_only`)
-    
-    todayGames.tips = filter(today?.predictions);
-    yesterdayGames.tips = filter(yesterday?.predictions)
+    try {
+        const { data: today} = await api.get(`today/games/straigth_only`)
+        const { data: yesterday} = await api.get(`yesterday/games/straigth_only`)
+        
+        todayGames.tips = filter(today?.predictions);
+        yesterdayGames.tips = filter(yesterday?.predictions)
+    } catch (error) {
+        console.log(error);
+    } finally {
+        isLoading.value  = false;
+    }
 })
 
 

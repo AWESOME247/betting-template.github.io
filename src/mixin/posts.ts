@@ -370,4 +370,46 @@ export default [
     link: "/blog/sure-combo-tips",
     class: 'h-full w-full rounded-md object-cover'
   },
+  {
+    title: "Soccer Picks Today",
+    desc: `Elevate your betting game with expert soccer picks today for top leagues, including Premier League and matches with Manchester City and Manchester United.`,
+    image: "/soccerball.webp",
+    link: "/blog/soccer-picks-today",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Expert Prediction",
+    desc: `Enhance your football betting experience with Omoyetips your trusted source for expert predictions in over 300+ football leagues worldwide, include the EPL.`,
+    image: "/soccerball.webp",
+    link: "/blog/expert-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Today Soccer Prediction",
+    desc: `Get ahead in soccer betting with today's predictions from Omoyetips! Our expert analysis covers 300+ leagues, ensuring reliable, data-driven insights.`,
+    image: "/soccerball.webp",
+    link: "/blog/today-soccer-prediction",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Successful Soccer Predictions",
+    desc: `Discover the art of successful soccer predictions with Omoyetips. Explore our data-driven insights, transparent accuracy rates, and betting strategies.`,
+    image: "/soccerball.webp",
+    link: "/blog/successful-soccer-predictions",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "100 Draw Predictions",
+    desc: `The world of football 100 draw prediction with Omoyetips, your trusted source for 100% free and highly accurate forecasts. Explore our unparalleled accuracy.`,
+    image: "/soccerball.webp",
+    link: "/blog/100-draw-predictions",
+    class: 'h-full w-full rounded-md object-cover'
+  },
+  {
+    title: "Site That Predict Football Matches Correctly",
+    desc: `The site that predict football matches correctly, Omoyetips is your trusted companion. We are the ultimate source for highly accurate football match tipsters.`,
+    image: "/soccerball.webp",
+    link: "/blog/site-that-predict-football-matches-correctly",
+    class: 'h-full w-full rounded-md object-cover'
+  },
 ];

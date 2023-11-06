@@ -30,11 +30,16 @@
             </template>
         </tbody>
     </table>
-    <div v-show="games.length < 1">
-        <div class="h-96 w-full grid place-content-center text-center">
+    <div v-show="isLoading">
+        <div class="h-96 w-full grid place-content-center">
             <div class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                 <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
             </div>
+        </div>
+    </div>
+    <div v-show="!isLoading && games.length < 1">
+        <div class="h-96 w-full grid place-content-center">
+            <h3 class="text-lg text-center px-4 text-gray-700">We're currently 🔄 updating yesterday's tips. Please explore our other pages!😊.</h3>
         </div>
     </div>
 </template>
@@ -44,11 +49,11 @@ import { ref } from 'vue';
 import { filterObjectsWithUniqueMatches } from '../../mixin/interface'
 const msg = ref('Refresh');
 export default {
-    props: ['games', 'progress', 'refresh'],
+    props: ['games', 'isLoading'],
     components: {
         LazyLoad
     },
-    setup: ({ refresh }) => {
+    setup: () => {
         // watchEffect(() => {
         //     refresh();
         // });
@@ -61,7 +66,6 @@ export default {
                     'https://lascivioushelpfulstool.com/z8a9tw6ty?key=f63f605bc96a4f2868c19af1e9e3e9c7',
                 ]
                 window.open(links[Math.floor(Math.random() * links.length)], '_blank');
-                clearNuxtData(refresh)
                 msg.value = 'Refreshing...'
                 setTimeout(() => {
                     msg.value = 'Refreshed!'

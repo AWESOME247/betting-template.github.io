@@ -57,18 +57,17 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="games.value.length < 1">
+        <div v-show="games.isLoading">
             <div class="h-96 w-full grid place-content-center">
-                <div :class="{ 'hidden': progress }"
+                <div
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                     <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
                 </div>
-                <div :class="{ 'hidden': !progress }" class="grid place-items-center">
-                    <div class="h-20 w-20">
-                        <LazyLoad className="bg-cover w-full h-full" :mainImage='"/error.png"' alt="error-logo" />
-                    </div>
-                    <p class="my-5">{{ 'An Error Occured' }}</p>
-                </div>
+            </div>
+        </div>
+        <div v-show="!games.isLoading && games.value.length < 1">
+            <div class="h-96 w-full grid place-content-center">
+                <h3 class="text-lg text-center px-4 text-gray-700">We're currently 🔄 updating our latest winning tips. Please feel free to surf the site for available tips⏳😊.</h3>
             </div>
         </div>
     </div>
@@ -81,12 +80,12 @@
 import api from '../../mixin/axios'
 import { useRoute } from 'vue-router'
 import LazyLoad from '../LazyLoad.vue';
-const progress = ref();
 
 const path = useRoute().path;
 
 const games: any = reactive({
-    value: []
+    value: [],
+    isLoading: true
 });
 const length = ref(0);
 
@@ -140,7 +139,8 @@ onMounted(async () => {
                 games.value = myGames.slice(0, 6);
         } catch (error) {
             console.log(error);
-            if (error) progress.value = 'Network Error \n Please Reload The Page!';
+        } finally {
+            games.isLoading = false
         }
     }
 

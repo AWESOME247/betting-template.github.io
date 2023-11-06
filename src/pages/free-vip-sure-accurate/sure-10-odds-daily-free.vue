@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Sure 10 Odds Daily Free</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" :isLoading="isLoading" />
             <Disclaimer />
         </div>
     </main>
@@ -37,12 +37,11 @@
     </section>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
 import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
-const progress = reactive({ value: '' });
+const isLoading = ref(true);
 const todayGames = reactive({
     tips: []
 });
@@ -62,11 +61,19 @@ const filter = (teams: any) => {
     return filteredTeams.slice(0, 7).reverse();
 };
 
-const { data: today } = await api.get(`today/games/straigth_only`)
-const { data: yesterday } = await api.get(`yesterday/games/straigth_only`)
-
-todayGames.tips = filter(today?.predictions);
-yesterdayGames.tips = filter(yesterday?.predictions)
+onMounted(async () => {
+    try {
+        const { data: today } = await api.get(`today/games/straigth_only`)
+        const { data: yesterday } = await api.get(`yesterday/games/straigth_only`)
+        
+        todayGames.tips = filter(today?.predictions);
+        yesterdayGames.tips = filter(yesterday?.predictions)
+    } catch (error) {
+        console.log(error);
+    } finally {
+        isLoading.value  = false;
+    }
+})
 
 useSchemaOrg([
     defineWebSite({

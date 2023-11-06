@@ -50,12 +50,17 @@
             </template>
         </tbody>
     </table>
-    <div v-show="games.length < 1">
+    <div v-show="isLoading">
         <div class="h-96 w-full grid place-content-center">
             <div
                 class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                 <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
             </div>
+        </div>
+    </div>
+    <div v-show="!isLoading && games.length < 1">
+        <div class="h-96 w-full grid place-content-center">
+            <h3 class="text-lg text-center px-4 text-gray-700">We're currently 🔄 updating today's tips. Please explore our other pages!😊</h3>
         </div>
     </div>
 </template>
@@ -65,13 +70,14 @@ import { ref } from 'vue';
 import { filterObjectsWithUniqueMatches } from '../../mixin/interface'
 const msg = ref('Refresh');
 export default {
-    props: ['games', 'progress', 'refresh'],
+    props: ['games', 'isLoading', 'refresh'],
     components: {
         LazyLoad
     },
-    setup: ({ refresh }) => {
+    setup: ({ refresh, isLoading }) => {
         return {
             filterObjectsWithUniqueMatches,
+            isLoading,
             msg,
             load: () => {
                 const links = [

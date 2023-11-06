@@ -13,19 +13,23 @@
                 class="inline-block px-4 py-3 rounded-t-lg">Tomorrow</button></li>
     </ul>
     <div :class="{ 'hidden': !active_1 }" class="my-4 border border-gray-300">
-        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'}">
-            <yesterdayTips :games="yesterday" :yrefresh="yrefresh" :progress="progress" />
+        <div
+            :class="{ 'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips' }">
+            <yesterdayTips :games="yesterday" :yrefresh="yrefresh" :progress="progress" :isLoading="isLoading" />
         </div>
-        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'">
-            <yesterdayOddTips :games="yesterday" :refresh="refresh" :progress="progress" />
+        <div
+            v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'">
+            <yesterdayOddTips :games="yesterday" :refresh="refresh" :progress="progress" :isLoading="isLoading" />
         </div>
     </div>
     <div :class="{ 'hidden': !active_2 }" class="my-4 border border-gray-300">
-        <div :class="{'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'}">
-            <todayTips :games="today" :refresh="refresh" :progress="progress" />
+        <div
+            :class="{ 'hidden': $route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips' }">
+            <todayTips :games="today" :refresh="refresh" :progress="progress" :isLoading="isLoading" />
         </div>
-        <div v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'">
-            <todayOddTips :games="today" :refresh="refresh" :progress="progress" />
+        <div
+            v-show="$route.path === '/free-vip-sure-accurate/sure-10-odds-daily-free' || $route.path === '/free-vip-sure-accurate/free-5-odds-tips'">
+            <todayOddTips :games="today" :refresh="refresh" :progress="progress" :isLoading="isLoading" />
         </div>
     </div>
     <div :class="{ 'hidden': !active_3 }" class="my-4">
@@ -35,13 +39,12 @@
     </div>
 </template>
 <script lang="ts">
-import { ref, onMounted } from 'vue';
 import todayTips from './today.vue'
 import yesterdayOddTips from './OddTableYesterday.vue'
 import todayOddTips from './OddTable.vue'
 import yesterdayTips from './yesterday.vue'
 export default {
-    props: ['today', 'yesterday', 'progress', 'refresh', 'yrefresh'],
+    props: ['today', 'yesterday', 'progress', 'refresh', 'yrefresh', 'isLoading'],
     components: {
         todayTips, yesterdayTips, todayOddTips, yesterdayOddTips
     },
@@ -49,26 +52,25 @@ export default {
         const active_1 = ref(false);
         const active_2 = ref(true);
         const active_3 = ref(false);
-        onMounted(() => {
+        onBeforeMount(() => {
             const script = document.createElement("script");
             script.type = "text/javascript";
-            script.src = "https://lascivioushelpfulstool.com/017706e64fca1fe77a550e2d1647ca31/invoke.js"
             script.append(`
-                atOptions = {
-                    'key': '017706e64fca1fe77a550e2d1647ca31',
-                    'format': 'iframe',
-                    'height': 90,
-                    'width': 728,
-                    'params': {}
-                }
-            `);
+                    atOptions = {
+                    'key' : '017706e64fca1fe77a550e2d1647ca31',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                `);
+            script.append('<scr' + 'ipt type="text/javascript" src="//lascivioushelpfulstool.com/017706e64fca1fe77a550e2d1647ca31/invoke.js"></scr' + 'ipt>');
             document.getElementById("table-ad")?.appendChild(script);
         })
-        return {
-            active_1,
-            active_2,
-            active_3,
-        }
+    return {
+        active_1,
+        active_2,
+        active_3,
     }
+}
 }
 </script>

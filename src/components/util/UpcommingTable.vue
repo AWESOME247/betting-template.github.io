@@ -31,18 +31,17 @@
                 </template>
             </tbody>
         </table>
-        <div v-show="games.value.length < 1">
+        <div v-show="games.isLoading">
             <div class="h-96 w-full grid place-content-center">
-                <div :class="{ 'hidden': progress }"
+                <div
                     class="h-20 w-20 rounded-full animate-bounce timing-ease-in-out-quint animation-delay-200 animation-duration-200">
                     <LazyLoad className="bg-cover w-full h-full" :mainImage='"/soccerball.webp"' alt="loading" />
                 </div>
-                <div :class="{ 'hidden': !progress }" class="grid place-items-center">
-                    <div class="h-20 w-20">
-                        <LazyLoad className="bg-cover w-full h-full" :mainImage='"/error.png"' alt="error-logo" />
-                    </div>
-                    <p class="my-5">{{ progress }}</p>
-                </div>
+            </div>
+        </div>
+        <div v-show="!games.isLoading && games.value.length < 1">
+            <div class="h-96 w-full grid place-content-center">
+                <h3 class="text-lg text-center px-4 text-gray-700">We're currently 🔄 updating the upcoming tips. Please feel free to surf the site for available tips⏳😊.</h3>
             </div>
         </div>
     </div>
@@ -52,13 +51,12 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue';
 import api from '../../mixin/axios'
 import LazyLoad from '../LazyLoad.vue';
 
-const progress = ref();
 const games: any = reactive({
-    value: []
+    value: [],
+    isLoading: true
 });
 
 onMounted(() => {
@@ -67,9 +65,10 @@ onMounted(() => {
             const { data: today } = await api.get(`today/games/bet_of_the_day`)
             const myGames = filter(today?.predictions);
             games.value = myGames.slice(0, 3)
-        } catch (error: any) {
-            if (error.message)
-                progress.value = error.message;
+        } catch (error) {
+            console.log(error);
+        } finally {
+            games.isLoading = false
         }
     }
 

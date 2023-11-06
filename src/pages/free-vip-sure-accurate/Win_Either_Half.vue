@@ -2,7 +2,7 @@
     <main class="max-w-screen-lg md:mx-3 lg:mx-auto sm:m-auto overflow-x-hidden mx-1">
         <div class="max-w-md m-auto mt-9">
             <h1 class="text-2xl my-5 font-bold">Sure Accurate VIP Win Either Half for Free</h1>
-            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" />
+            <Table :today="todayGames.tips" :yesterday="yesterdayGames.tips" :isLoading="isLoading" />
             <Disclaimer />
         </div>
     </main>
@@ -75,14 +75,13 @@
     </p>
 </section></template>
 <script setup lang="ts">
-import { watchEffect, ref, reactive } from 'vue';
 import Table from '../../components/util/Table.vue';
 import api from '../../mixin/axios'
 import Disclaimer from '../../components/Disclaimer.vue'
 import Tipstore from '../../components/util/Tipstore.vue'
 import { useRoute } from "vue-router";
 import { yesterdayInterface, todayInterface } from '../../mixin/interface';
-const progress = reactive({ value: '' });
+const isLoading = ref(true);
 const todayGames = reactive({
     tips: []
 });
@@ -103,10 +102,16 @@ const filter = (teams: any) => {
 };
 
 onMounted(async () => {
-    const { data: today } = await api.get(`today/games/win_either_halfs`)
-    const { data: yesterday } = await api.get(`yesterday/games/win_either_halfs`)
-    todayGames.tips = filter(today?.predictions);
-    yesterdayGames.tips = filter(yesterday?.predictions)
+    try {
+        const { data: today } = await api.get(`today/games/win_either_halfs`)
+        const { data: yesterday } = await api.get(`yesterday/games/win_either_halfs`)
+        todayGames.tips = filter(today?.predictions);
+        yesterdayGames.tips = filter(yesterday?.predictions)
+    } catch (error) {
+        console.log(error);
+    } finally {
+        isLoading.value  = false;
+    }
 })
 
 

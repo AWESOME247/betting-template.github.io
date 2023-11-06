@@ -20,12 +20,12 @@ onBeforeMount(() => {
     script.src = "https://lascivioushelpfulstool.com/58/f4/f7/58f4f777eb5d2b59e7112034f9853a90.js"
     document.body.appendChild(script);
   }
-  {
-      const script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src = "https://lascivioushelpfulstool.com/e0/07/ec/e007ec1318fee1fe31672d7e5afbd00a.js"
-      document.body.appendChild(script);
-  }
+  // {
+  //     const script = document.createElement("script");
+  //     script.type = "text/javascript";
+  //     script.src = "https://lascivioushelpfulstool.com/dd/4a/d8/dd4ad8f8ed372a65f0271f5788b5528f.js"
+  //     document.body.appendChild(script);
+  // }
   {
     const script = document.createElement("script");
     script.type = "text/javascript";

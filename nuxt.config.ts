@@ -319,6 +319,48 @@ export default defineNuxtConfig({
         lastmod: "2023-10-13T06:09:38+01:00",
       },
     },
+    "/blog/soccer-picks-today": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-11-04T02:04:38+01:00",
+      },
+    },
+    "/blog/expert-prediction": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-11-04T02:47:38+01:00",
+      },
+    },
+    "/blog/today-soccer-prediction": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-11-05T01:47:38+01:00",
+      },
+    },
+    "/blog/successful-soccer-predictions": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-11-06T01:08:38+01:00",
+      },
+    },
+    "/blog/100-draw-predictions": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-11-06T01:55:38+01:00",
+      },
+    },
+    "/blog/site-that-predict-football-matches-correctly": {
+      sitemap: {
+        changefreq: "monthly",
+        priority: 0.8,
+        lastmod: "2023-11-06T02:57:38+01:00",
+      },
+    },
     "/pool/fixtures": {
       sitemap: {
         changefreq: "weekly",
